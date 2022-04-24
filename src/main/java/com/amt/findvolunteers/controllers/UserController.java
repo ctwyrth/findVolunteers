@@ -7,12 +7,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.DeleteMapping;
+//import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
+//import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
+//import org.springframework.web.bind.annotation.PutMapping;
 
 import com.amt.findvolunteers.models.LoginUser;
 import com.amt.findvolunteers.models.User;
@@ -37,11 +37,11 @@ public class UserController {
 //    }
 
     // create new
-    @GetMapping("/")
+    @GetMapping("/register")
     public String index(Model model) {
     	model.addAttribute("newUser", new User());
     	model.addAttribute("newLogin", new LoginUser());
-        return "/users/index.jsp";
+        return "/users/register.jsp";
     }
     @PostMapping("/register")
     public String register(@Valid @ModelAttribute("newUser") User newUser, BindingResult result, Model model, HttpSession session) {
@@ -49,7 +49,7 @@ public class UserController {
     	userService.register(newUser, result);
     	if (result.hasErrors()) {
     		model.addAttribute("newLogin", new LoginUser());
-    		return "/users/index.jsp";
+    		return "/users/register.jsp";
     	} else {
     		session.setAttribute("user_id", newUser.getId());
     		return "redirect:/dashboard";
@@ -77,35 +77,36 @@ public class UserController {
     	return "redirect:/";
     }
 
-    // display one found by id
-    @GetMapping("/users/{id}")
-    public String showOneuserById(@PathVariable("id") Long id, Model model) {
-        User userToShow = userService.findUser(id);
-        model.addAttribute("user", userToShow);
-        return "/users/show.jsp";
-    }
+//    // display one found by id
+//    @GetMapping("/users/{id}")
+//    public String showOneuserById(@PathVariable("id") Long id, Model model) {
+//        User userToShow = userService.findUser(id);
+//        model.addAttribute("user", userToShow);
+//        return "/users/show.jsp";
+//    }
 
-    // update one found by id
-    @GetMapping("/users/{id}/edit")
-    public String edit(@PathVariable("id") Long id, Model model) {
-    	User userToShow = userService.findUser(id);
-    	model.addAttribute("user", userToShow);
-    	return "/users/edit.jsp";
-    }
-    @PutMapping("/users/{id}")
-    public String update(@Valid @ModelAttribute("user") User user, BindingResult result) {
-    	if (result.hasErrors()) {
-        	return "/users/edit.jsp";
-    	} else {
-		userService.updateUser(user);
-		return "redirect:/users";
-    	}
-    }
+//    // update one found by id
+//    @GetMapping("/users/{id}/edit")
+//    public String edit(@PathVariable("id") Long id, Model model) {
+//    	User userToShow = userService.findUser(id);
+//    	model.addAttribute("user", userToShow);
+//    	return "/users/edit.jsp";
+//    }
+//    @PutMapping("/users/{id}")
+//    public String update(@Valid @ModelAttribute("user") User user, BindingResult result) {
+//    	if (result.hasErrors()) {
+//        	return "/users/edit.jsp";
+//    	} else {
+//		userService.updateUser(user);
+//		return "redirect:/users";
+//    	}
+//    }
 
-    // delete one
-    @DeleteMapping("/users/{id}")
-    public String destroy(@PathVariable("id") Long id) {
-        userService.deleteUser(id);
-        return "redirect:/users";
-    }
+//    // delete one
+//    @DeleteMapping("/users/{id}")
+//    public String destroy(@PathVariable("id") Long id) {
+//        userService.deleteUser(id);
+//        return "redirect:/users";
+//    }
+
 }

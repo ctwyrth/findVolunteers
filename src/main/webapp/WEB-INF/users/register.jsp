@@ -21,8 +21,8 @@
 <body>
 	<div class="container-fluid">
 		<div class="container mx-auto mt-4">
-			<h1 class="display-2 text-center" style="color: blueviolet;">Joy Bundler Names!</h1>
-			<p class="text-center mb-5">It's all about the... baby name.</p>
+			<h1 class="display-2 text-center" style="color: blueviolet;">Placeholder Title</h1>
+			<p class="text-center mb-5">Placeholder tag line.</p>
 			<div class="row">
 				<div class="col-5 ms-auto me-2">
 					<h4>Register:</h4>
@@ -53,22 +53,6 @@
 						</div>
 						<div class="mb-3 text-danger"><form:errors path="confirm" /></div>
 						<input type="submit" value="Create" class="btn btn-sm btn-success" />
-					</form:form>
-				</div>
-				<div class="col-5 ms-2 me-auto">
-					<h4>Log In:</h4>
-					<form:form action="/login" modelAttribute="newLogin" method="POST" class="p-3">
-						<div class="form-floating mb-3">
-							<form:input type="email" path="email" class="form-control" placeholder="Email" />
-							<form:label path="email" class="form-label">Email</form:label>							
-						</div>
-						<div class="mb-3 text-danger"><form:errors path="email" /></div>
-						<div class="form-floating mb-3">
-							<form:input type="password" path="password" class="form-control" placeholder="Password" />
-							<form:label path="password" class="form-label">Password</form:label>							
-						</div>
-						<div class="mb-3 text-danger"><form:errors path="password" /></div>
-						<input type="submit" value="Log In" class="btn btn-sm btn-primary" />
 					</form:form>
 				</div>
 			</div>
