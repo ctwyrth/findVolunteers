@@ -47,7 +47,7 @@ public class Category {
 
 //    @ManyToMany
 //    @JoinTable(
-//    	name = "userInterests",
+//    	name = "user_interests",
 //    	joinColumns = @JoinColumn(name = "category_id"),
 //    	inverseJoinColumns = @JoinColumn(name = "userProfile_id")
 //   	)
