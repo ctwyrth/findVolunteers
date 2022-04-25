@@ -1,8 +1,7 @@
 package com.amt.findvolunteers.models;
 
 import java.util.Date;
-//import java.util.List;
-//import java.util.Locale.Category;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,8 +10,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-//import javax.persistence.JoinTable;
-//import javax.persistence.ManyToMany;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
@@ -52,7 +51,7 @@ public class Event {
     private String city;
     
     @Size(min=2, max=12, message="State should be 2 to 12 charcaters long.")
-    private String State;
+    private String state;
     
     @NotNull(message="Zip Code is a required field.")
     @Size(min=5, max=10, message="Zip Code should be 5 to 10 charaters long.")
@@ -89,8 +88,8 @@ public class Event {
     @Size(min=3, message="An Instagram username should be at least 3 chracters long.")
     private String contactInstagram;
     
-    @Size(min=16, message="A WhatsApp contact should be no less than 16 charcaters long including spaces.")
-    private String contactWhatsApp;    
+//    @Size(min=16, message="A WhatsApp contact should be no less than 16 charcaters long including spaces.")
+//    private String contactWhatsApp;
     
 
     // For a many to one relationship
@@ -99,13 +98,13 @@ public class Event {
     private User poster;
 
     // For a many to many relationship categories/interests
-//    @ManyToMany
-//    @JoinTable(
-//        name = "eventCategories",
-//        joinColumns = @JoinColumn(name = "event_id"),
-//        inverseJoinColumns = @JoinColumn(name = "category_id")
-//    )
-//    private List<Category> categories;
+    @ManyToMany
+    @JoinTable(
+        name = "eventCategories",
+        joinColumns = @JoinColumn(name = "event_id"),
+        inverseJoinColumns = @JoinColumn(name = "category_id")
+    )
+    private List<Category> categories;
 
     @Column(updatable=false)
     @DateTimeFormat(pattern="yyyy-MM-dd hh:mm:ss a")
@@ -171,10 +170,10 @@ public class Event {
     }
     
     public String getState() {
-    	return State;
+    	return state;
     }
     public void setState(String state) {
-    	State = state;
+    	this.state = state;
     }
     
     public String getZipCode() {
@@ -247,12 +246,12 @@ public class Event {
     	this.contactInstagram = contactInstagram;
     }
     
-    public String getContactWhatsApp() {
-    	return contactWhatsApp;
-    }
-    public void setContactWhatsApp(String contactWhatsApp) {
-    	this.contactWhatsApp = contactWhatsApp;
-    }
+//    public String getContactWhatsApp() {
+//    	return contactWhatsApp;
+//    }
+//    public void setContactWhatsApp(String contactWhatsApp) {
+//    	this.contactWhatsApp = contactWhatsApp;
+//    }
     
     public User getPoster() {
 		return poster;
@@ -261,12 +260,12 @@ public class Event {
 		this.poster = poster;
 	}
 
-//	public List<Category> getCategories() {
-//    	return categories;
-//    }
-//    public void setCategories(List<Category> categories) {
-//    	this.categories = categories;
-//    }
+	public List<Category> getCategories() {
+    	return categories;
+    }
+    public void setCategories(List<Category> categories) {
+    	this.categories = categories;
+    }
     
     public Date getCreatedAt() {
     	return createdAt;

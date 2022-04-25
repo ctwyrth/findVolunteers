@@ -45,13 +45,13 @@ public class Category {
     )
     private List<Event> events;
 
-//    @ManyToMany
-//    @JoinTable(
-//    	name = "user_interests",
-//    	joinColumns = @JoinColumn(name = "category_id"),
-//    	inverseJoinColumns = @JoinColumn(name = "userProfile_id")
-//   	)
-//    private List<UserProfile> profiles;
+    @ManyToMany
+    @JoinTable(
+    	name = "user_interests",
+    	joinColumns = @JoinColumn(name = "category_id"),
+    	inverseJoinColumns = @JoinColumn(name = "userProfile_id")
+   	)
+    private List<UserProfile> profiles;
 
     @Column(updatable=false)
     @DateTimeFormat(pattern="yyyy-MM-dd")

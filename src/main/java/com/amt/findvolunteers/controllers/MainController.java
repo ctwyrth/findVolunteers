@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 //import org.springframework.web.bind.annotation.PostMapping;
 //import org.springframework.web.bind.annotation.PutMapping;
 
+import com.amt.findvolunteers.models.LoginUser;
 import com.amt.findvolunteers.models.User;
 import com.amt.findvolunteers.services.UserService;
 
@@ -26,7 +27,9 @@ public class MainController {
 
     // landing page
     @GetMapping("/")
-    public String index() {
+    public String index(Model model) {
+    	model.addAttribute("newUser", new User());
+    	model.addAttribute("newLogin", new LoginUser());
         return "/index.jsp";
     }
     

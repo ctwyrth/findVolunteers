@@ -61,6 +61,7 @@ public class EventController {
     	if (userId == null) {
     	    return "redirect:/";
     	} else {
+//    		eventService.postNew(event, result);
     	    if (result.hasErrors()) {
     	    	return "/events/newEvent.jsp";
     	    } else {
