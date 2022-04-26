@@ -19,8 +19,7 @@
 <script src="/webjars/jquery/jquery.min.js"></script>
 <script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
 </head>
-<body class="bg-sea">
-	
+<body>
 	<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
 	  <symbol id="bootstrap" viewBox="0 0 118 94">
 	    <title>Bootstrap</title>
@@ -102,7 +101,7 @@
 	</svg>
 
 	<main>
-		<div class="d-flex flex-column flex-shrink-0 p-4 text-white bg-ocean"
+		<div class="d-flex flex-column flex-shrink-0 p-4 text-white bg-dark"
 			style="width: 260px; height: 100vh">
 			<a href="/"
 				class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
@@ -143,61 +142,11 @@
 		</div>
 
 		<div class="ms-4">
-			<h1 class="display-3 text-center">Welcome!</h1>
+			<h1 class="display-3 text-center">Events Page!</h1>
 			<div class="container">
-				<div class="card mb-3" style="max-width: 100%;">
-					<div class="row g-0">
-						<div class="col-md-4">
-							<img src="/img/landscape-blue-time.jpg"
-								class="img-fluid rounded-start" alt="...">
-						</div>
-						<div class="col-md-8 bg-wave">
-							<div class="card-body">
-								<h5 class="card-title text-dark">Card title</h5>
-								<p class="card-text text-dark">This is a wider card with supporting
-									text below as a natural lead-in to additional content. This
-									content is a little bit longer.</p>
-							</div>
-						</div>
-					</div>
-				</div>
-				<form class="d-flex bg-dark">
-					<input class="form-control me-1 bg-ocean text-white" type="search" placeholder="Search"
-						aria-label="Search">
-					<button class="btn btn-outline-success" type="submit">Search</button>
-				</form>
-				<p></p>
-			</div>
-
-			<div class="card-group">
-				<div class="card">
-					<img src="/img/landscape-volunteers.jpg" class="card-img-top" alt="...">
-					<div class="card-body bg-scheme">
-						<h5 class="card-title text-dark">Event Name</h5>
-						<p class="card-text text-dark">This is a .</p>
-					</div>
-				</div>
-				<div class="card">
-					<img src="/img/landscape-dog.jpg" class="card-img-top" alt="...">
-					<div class="card-body bg-scheme">
-						<h5 class="card-title text-dark">Event Name</h5>
-						<p class="card-text text-dark">This card has .</p>
-					</div>
-				</div>
-				<div class="card">
-					<img src="/img/landscape-volunteers.jpg" class="card-img-top" alt="...">
-					<div class="card-body bg-scheme">
-						<h5 class="card-title text-dark">Event Name</h5>
-						<p class="card-text text-dark">This is a wider.</p>
-					</div>
-				</div>
 			</div>
 		</div>
-
-
-
-
-
+		
 	</main>
 	<div class="modal fade text-dark" id="loginModal" tabindex="-1"
 		aria-labelledby="loginModalLabel" aria-hidden="true">

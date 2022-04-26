@@ -19,12 +19,37 @@ main {
   overflow-y: hidden;
 }
 
+.bg-sea {
+	--bs-bg-opacity: 1;
+	background-color: rgba(204, 112, 75, 1)!important;
+}
+.bg-wave {
+	color: #fff;
+	background-color: #E8C07D;
+	
+}
+.bg-ocean {
+	--bs-bg-opacity: 1;
+	background-color: rgba(159, 192, 136, 1)!important;
+}
+.bg-scheme {
+	color: #fff;
+	background-color: #E8C07D;
+}
+
+.btn-pumpkin {
+	color: #fff;
+	background-color: #9FC088;
+	border-color: #9FC088;
+}
+
+
 .b-example-divider {
   flex-shrink: 0;
   width: 1.5rem;
   height: 100vh;
-  background-color: rgba(0, 0, 0, .1);
-  border: solid rgba(0, 0, 0, .15);
+  background-color: rgb(168, 255, 211);
+  border: solid rgb(128, 128, 0);
   border-width: 1px 0;
   box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
 }
@@ -89,3 +114,11 @@ main {
 
 .fw-semibold { font-weight: 600; }
 .lh-tight { line-height: 1.25; }
+
+.btn-success{
+	background-color:  #d2f4ea;
+}
+
+
+
+
