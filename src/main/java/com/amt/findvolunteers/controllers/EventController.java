@@ -41,7 +41,7 @@ public class EventController {
             List<Event> events = eventService.allEvents();
     	    model.addAttribute("events", events);
             model.addAttribute(currentUser);
-            return "/events/showEvents.jsp";
+            return "/events.jsp";
         }
     }
 
@@ -61,7 +61,7 @@ public class EventController {
     	if (userId == null) {
     	    return "redirect:/";
     	} else {
-//    		eventService.postNew(event, result);
+    		eventService.postNew(event, result);
     	    if (result.hasErrors()) {
     	    	return "/events/newEvent.jsp";
     	    } else {

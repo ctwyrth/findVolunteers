@@ -45,7 +45,7 @@ public class UserProfile {
 	private String userZipCode; // to accommodate five-four
 	 
 	@Min(value=7, message="Please provide a valid phone number.")
-	private String userPhone; // using type="tel" and pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}"
+	private String userPhone; // using type="tel" and pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
 	 
 	@Size(min=3, max=30, message="Please provide a valid Twitter username.")
 	private String userTwitter;

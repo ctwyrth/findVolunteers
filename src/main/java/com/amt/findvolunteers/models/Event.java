@@ -16,11 +16,10 @@ import javax.persistence.ManyToOne;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
-import javax.validation.constraints.Email;
+//import javax.validation.constraints.Email;
 import javax.validation.constraints.Future;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.PositiveOrZero;
 import javax.validation.constraints.Size;
 
 import org.springframework.format.annotation.DateTimeFormat;
@@ -41,56 +40,45 @@ public class Event {
     @Size(min=3, max=128, message="Host should be 3 to 128 charcaters long.")
     private String host;
     
-    @Size(min=10, max=128, message="Address should be 10 to 128 charcaters long.")
     private String address;
     
-    @Size(min=5, max=50, message="Address should be 5 to 50 charcaters long.")
     private String address2;
 
-    @Size(min=3, max=128, message="City should be 3 to 128 charcaters long.")
     private String city;
     
-    @Size(min=2, max=12, message="State should be 2 to 12 charcaters long.")
     private String state;
     
     @NotNull(message="Zip Code is a required field.")
     @Size(min=5, max=10, message="Zip Code should be 5 to 10 charaters long.")
     private String zipCode;
     
-    @NotBlank()
+    @NotBlank(message="This is a required field.")
     private String description;
     
     @NotNull(message="A start date is required.")
     @Future(message="The start date cannot be in the past.")
-    @DateTimeFormat(pattern="yyyy-MM-dd hh:mm a")
+    @DateTimeFormat(pattern="yyyy-MM-dd")
     private Date start;
     
     @NotNull(message="An end date is required.")
     @Future(message="The start date cannot be in the past.") // Going to need a validation check in submit that this date is after start date
-    @DateTimeFormat(pattern="yyyy-MM-dd hh:mm a")
+    @DateTimeFormat(pattern="yyyy-MM-dd")
     private Date end;
     
-    @PositiveOrZero(message="Volunteers needed can not be negative.")
     private Integer needed;
     
-    @Size(min=10, max=14, message="Phone number should be 10 to 14 characters long.")
     private String contactPhone;
     
-    @Email(message="Please enter a valid email address.")
     private String contactEmail;
     
-    @Size(min=3, max=15, message="A Twitter handle is between 3 and 15 characters long, do not include the @ symbol.")
     private String contactTwitter;
     
-    @Size(min=5, message="A Facebook username should be at least 5 characters long.")
     private String contactFacebook;
     
-    @Size(min=3, message="An Instagram username should be at least 3 chracters long.")
     private String contactInstagram;
     
 //    @Size(min=16, message="A WhatsApp contact should be no less than 16 charcaters long including spaces.")
 //    private String contactWhatsApp;
-    
 
     // For a many to one relationship
     @ManyToOne(fetch = FetchType.LAZY)
