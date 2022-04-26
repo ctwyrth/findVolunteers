@@ -89,3 +89,32 @@ main {
 
 .fw-semibold { font-weight: 600; }
 .lh-tight { line-height: 1.25; }
+
+.nav-pills .nav-link.active {
+	color: #fff;
+	background-color: #E8C07D;
+}
+
+.btn-pumpkin {
+	color: #fff;
+	background-color: #CC704B;
+	border-color: #CC704B;
+}
+
+.btn-pumpkin:hover {
+	color: #fff;
+	background-color: #E76900;
+	border-color: #E76900;
+}
+
+.btn-moss {
+	color: #fff;
+	background-color: #9FC088;
+	border-color: #9FC088;
+}
+
+.btn-moss:hover {
+	color: #fff;
+	background-color: #087830;
+	border-color: #087830;
+}

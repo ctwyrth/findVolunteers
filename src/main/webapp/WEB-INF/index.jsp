@@ -11,8 +11,8 @@
 	
 	<title>Insert title here</title>
 	
-	<link rel="stylesheet" type="text/css" href="/css/style.css">
 	<link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css" />
+	<link rel="stylesheet" type="text/css" href="/css/style.css">
 	
 	<script type="text/javascript" src="/js/script.js"></script>
 	<script src="/webjars/jquery/jquery.min.js"></script>
@@ -119,9 +119,9 @@
 		    </ul>
    			<hr>
 		    <div class="btn-group" role="group">
-				<button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#registerModal">Register</button>
+				<button type="button" class="btn btn-sm btn-pumpkin" data-bs-toggle="modal" data-bs-target="#registerModal">Register</button>
 				
-				<button type="button" class="btn btn-sm btn-success" data-bs-toggle="modal" data-bs-target="#loginModal">Login</button>
+				<button type="button" class="btn btn-sm btn-moss" data-bs-toggle="modal" data-bs-target="#loginModal">Login</button>
 		    </div>
   		</div>
 		<div class="ms-4">
