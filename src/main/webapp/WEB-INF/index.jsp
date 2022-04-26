@@ -102,6 +102,7 @@
 	</svg>
 
 	<main>
+<<<<<<< Updated upstream
 		<div class="d-flex flex-column flex-shrink-0 p-4 text-white bg-ocean"
 			style="width: 260px; height: 100vh">
 			<a href="/"
@@ -142,6 +143,52 @@
 			</div>
 		</div>
 
+=======
+		<div class="d-flex flex-column flex-shrink-0 p-4 text-white bg-dark" style="width: 260px; height:100vh;">
+			<a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+      			<span class="fs-4">findVolunteers</span>
+ 			</a>
+		    <hr>
+		    <ul class="nav nav-pills flex-column mb-auto">
+		    	<li class="nav-item">
+		        	<a href="#" class="nav-link active" aria-current="page">
+		          	<svg class="bi me-2" width="16" height="16"><use xlink:href="#home"></use></svg>
+		         	Home
+		        	</a>
+		    	</li>
+		    	<li>
+		        	<a href="#" class="nav-link text-white">
+		          	<svg class="bi me-2" width="16" height="16"><use xlink:href="#speedometer2"></use></svg>
+		        	Dashboard
+		        	</a>
+		    	</li>
+		    	<li>
+		        	<a href="#" class="nav-link text-white">
+		        	<svg class="bi me-2" width="16" height="16"><use xlink:href="#table"></use></svg>
+		        	Orders
+		        	</a>
+		    	</li>
+		    	<li>
+		        	<a href="#" class="nav-link text-white">
+		        	<svg class="bi me-2" width="16" height="16"><use xlink:href="#grid"></use></svg>
+		        	Products
+		        	</a>
+		    	</li>
+		    	<li>
+		    		<a href="#" class="nav-link text-white">
+		    		<svg class="bi me-2" width="16" height="16"><use xlink:href="#people-circle"></use></svg>
+		    		Customers
+		    		</a>
+		    	</li>
+		    </ul>
+   			<hr>
+		    <div class="btn-group" role="group">
+				<button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#registerModal">Register</button>
+				
+				<button type="button" class="btn btn-sm btn-success" data-bs-toggle="modal" data-bs-target="#loginModal">Login</button>
+		    </div>
+  		</div>
+>>>>>>> Stashed changes
 		<div class="ms-4">
 			<h1 class="display-3 text-center">Welcome!</h1>
 			<div class="container">
