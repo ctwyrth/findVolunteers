@@ -11,49 +11,75 @@
 	
 	<title>User Profile</title>
 	
-	<!-- <link rel="stylesheet" type="text/css" href="/css/style.css"> -->
 	<link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css" />
+	<link rel="stylesheet" type="text/css" href="/css/style.css">
 	
-	<!-- <script type="text/javascript" src="/js/script.js"></script> -->
+	<script type="text/javascript" src="/js/script.js"></script>
 	<script src="/webjars/jquery/jquery.min.js"></script>
 	<script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
 </head>
 	
 <body>
-	<div class="container-fluid">
-		<div class="container mx-auto mt-4">
-			<div class="row mx-auto" style="width: 85%;">
-				<h1 class="display-4">Volunteer Contact Information</h1>
-				<c:choose>
-					<c:when test="${userProfile.id != null}"> 
-						<form:form action="/userProfile/${userProfile.id}/edit" modelAttribute="userProfile" method="post" class="row border border-1 rounded bg-light g-3">
-							<input type="hidden" name="_method" value="put">
-					</c:when>
-					<c:otherwise>					
-						<form:form action="/userProfile/${user_id}" modelAttribute="userProfile" method="post" class="row border border-1 rounded bg-light g-3">
-					</c:otherwise>
-				</c:choose>
-			
-					<p class="my-1"> <em> Please note all fields below are optional:</em></p>
-					<h4>Please note all fields below are optional:</h4>
-					<div class="col-12">
-	    				<form:label path="userAddress" class="form-label">Street Address:</form:label>
-	    				<form:input type="text" path="userAddress" class="form-control" id="userAddress" />
-		  				<div><form:errors path="userAddress" /></div>
-	  				</div>
-	  				<div class="col-12">
-	    				<form:label path="userAddress2" class="form-label">Address Line 2(Apartment number, etc):</form:label>
-	    				<form:input type="text" path="userAddress2" class="form-control" id="userAddress2" />
-		  				<div><form:errors path="userAddress2" /></div>
-	  				</div>
-	  				<div class="col-12">
+	<main>
+		<div class="d-flex flex-column flex-shrink-0 p-4 text-white bg-pumpkin" style="width: 220px;">
+			<a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none"><span class="fs-4">findVolunteers</span></a>
+		    <hr>
+		    <ul class="nav nav-pills flex-column mb-auto">
+		    	<li class="nav-item">
+		        	<a href="/" class="nav-link text-white" aria-current="page"><i class="fa-solid fa-house me-2"></i>Home</a>
+		    	</li>
+		    	<c:if test="${user != null}">
+		    		<li>
+		        		<a href="/dashboard" class="nav-link text-white"><i class="fa-solid fa-gauge me-2"></i>Dashboard</a>
+		    		</li>
+		    	</c:if>
+		    	<li><a href="/about" class="nav-link text-white"><i class="fa-solid fa-circle-user me-2"></i>About</a>
+		    	</li>
+		    	<li>
+		        	<a href="/contact" class="nav-link text-white"><i class="fa-solid fa-envelope me-2"></i>Contact</a>
+		    	</li>
+		    	<li>
+		    		<a href="/allEvents" class="nav-link active"><i class="fa-solid fa-calendar me-2"></i>Events</a>
+		    	</li>
+		    </ul>
+   			<hr>
+   			<c:choose>
+   				<c:when test="${!user}">
+				    <div class="btn-group" role="group">
+						<button type="button" class="btn btn-sm btn-offpumpkin" data-bs-toggle="modal" data-bs-target="#registerModal">Register</button>
+						<button type="button" class="btn btn-sm btn-moss" data-bs-toggle="modal" data-bs-target="#loginModal">Login</button>
+		  			</div>
+   				</c:when>
+   				<c:otherwise>
+   					<div class="dropdown">
+				    	<a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+				    	<img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2">
+				    	<strong>mdo</strong>
+				    	</a>
+				    	<ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
+				    		<li><a class="dropdown-item" href="/users/${user.id}/profile">Profile</a></li>
+				    		<li><hr class="dropdown-divider"></li>
+				    		<li><a class="dropdown-item" href="/logout">Sign out</a></li>
+				    	</ul>
+				    </div>
+   				</c:otherwise>
+   			</c:choose>
+  		</div>
+		<div class="container-fluid" style="overflow-y: hidden;">
+			<div class="row mx-auto mt-4" style="width: 90%;">
+				<h1 class="display-4">User Profile:</h1>
+				<form:form action="/users/profile" modelAttribute="profile" method="POST" class="row border border-1 rounded bg-light g-3">
+				<p class="my-1"> <em> Please note all fields below are optional:</em></p>
+					<!-- <h4>Please note all fields below are optional:</h4> -->
+	  				<div class="col-md-4">
 	  					<form:label path="userCity" class="form-label">City:</form:label>
 	  					<form:input path="userCity" class="form-control" id="userCity"/>
-		  				<div><form:errors path="userCity" /></div>
+		  				<div><form:errors path="userCity" class="text-danger" style="font-size: .75rem;" /></div>
 	  				</div>
-	  				<div class="col-md-5">
+	  				<div class="col-md-4">
 	  					<form:label path="userState" class="form-label">State:</form:label>
 	  					<form:select class="form-control" path="userState" id="userState">
+	  						<form:option value="">Select a State...</form:option>
 							<form:option value="AK">Alaska</form:option>
 							<form:option value="AL">Alabama</form:option>
 							<form:option value="AR">Arkansas</form:option>
@@ -107,40 +133,36 @@
 							<form:option value="WV">West Virginia</form:option>
 							<form:option value="WY">Wyoming</form:option>
 						</form:select>
-		  <!-- if we are limiting selection then there is no error unless we link with City
-		  			<div><form:errors path="userState" /></div>
-		   -->	
+		  				<div><form:errors path="userState" class="text-danger" style="font-size: .75rem;" /></div>
 	  				</div>
-	  				<div class="col-md-5">
+	  				<div class="col-md-4">
 	  					<form:label path="userZipCode" class="form-label">ZipCode:</form:label>
 	  					<form:input type="number" path="userZipCode" id="start" class="form-control" />
-		  				<div><form:errors path="userZipCode" /></div>
+		  				<div><form:errors path="userZipCode" class="text-danger" style="font-size: .75rem;" /></div>
 	  				</div>
-	  				<div class="col-md-2">
+	  				<div class="col-md-6">
 	  					<form:label path="userPhone" class="form-label">Phone:</form:label>
 	  					<form:input type="tel" path="userPhone" id="userPhone" pattern="(?:\(\d{3}\)|\d{3})[- ]?\d{3}[- ]?\d{4}" placeholder="(310) 555-1212" class="form-control" />
-		  				<div><form:errors path="userPhone" /></div>
+		  				<div><form:errors path="userPhone" class="text-danger" style="font-size: .75rem;" /></div>
 	  				</div>
 	  				<hr />
 	  				<h4>Social Media:</h4>
-	  				<div class="col-12">
+	  				<div class="col-4">
 	    				<form:label path="userTwitter" class="form-label">Twitter @:</form:label>
 	    				<form:input type="text" path="userTwitter" class="form-control" id="userTwitter"/>
-		  				<div><form:errors path="userTwitter" /></div>
+		  				<div><form:errors path="userTwitter" class="text-danger" style="font-size: .75rem;" /></div>
 	  				</div>
-	  				<div class="col-12">
+	  				<div class="col-4">
 	    				<form:label path="userFacebook" class="form-label">Facebook:</form:label>
 	    				<form:input type="text" path="userFacebook" class="form-control" id="userFacebook"/>
-		  				<div><form:errors path="userFacebook" /></div>
+		  				<div><form:errors path="userFacebook" class="text-danger" style="font-size: .75rem;" /></div>
 	  				</div>
-	  				<div class="col-md-6">
+	  				<div class="col-md-4">
 	    				<form:label path="userInstagram" class="form-label">Instagram @:</form:label>
 	    				<form:input type="text" path="userInstagram" class="form-control" id="userInstagram" />
-		  				<div><form:errors path="userInstagram" /></div>
+		  				<div><form:errors path="userInstagram" class="text-danger" style="font-size: .75rem;" /></div>
 	  				</div>
 	  				<hr />
-	  		<!-- needs to be loggedin user -->
-	  				<form:input type="hidden" path="user_id" value="${user_id}"/> 
 	  				<div class="mb-3 text-center">
 		  				<input type="submit" value="Update Information" class="col-2 btn btn-sm btn-primary" />  				
 	  				</div>
@@ -148,8 +170,5 @@
 	  		</div>
   		</div>
 	</div>
-	<br />
-	<br />
-	<br />
 </body>
 </html>

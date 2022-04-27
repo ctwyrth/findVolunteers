@@ -1,5 +1,7 @@
 package com.amt.findvolunteers.controllers;
 
+import java.util.List;
+
 //import java.util.List;
 //import javax.validation.Valid;
 import javax.servlet.http.HttpSession;
@@ -14,9 +16,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 //import org.springframework.web.bind.annotation.PathVariable;
 //import org.springframework.web.bind.annotation.PostMapping;
 //import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 
+import com.amt.findvolunteers.models.Event;
 import com.amt.findvolunteers.models.LoginUser;
 import com.amt.findvolunteers.models.User;
+import com.amt.findvolunteers.services.EventService;
 import com.amt.findvolunteers.services.UserService;
 
 @Controller
@@ -24,6 +29,9 @@ public class MainController {
 //	-----------------------variables-----------------------
     @Autowired
     private UserService userService;
+    
+    @Autowired
+    private EventService eventService;
 
     // landing page
     @GetMapping("/")
@@ -44,6 +52,30 @@ public class MainController {
     		return "dashboard.jsp";
     	}
     }
+    
+    // about no login required
+    @GetMapping("/about")
+    public String about() {
+    	return "/about.jsp";
+    }
+
+    // contact no login required
+    @GetMapping("/contact")
+    public String contact() {
+    	return "/contact.jsp";
+    }
+    @PostMapping("/contact")
+    public String sendContact() {
+    	return null;
+    }
+    
+    @GetMapping("/allEvents")
+    public String allEvents(Model model) {
+    	List<Event> events = eventService.allEvents();
+    	model.addAttribute("events", events);
+    	return "events.jsp";
+    }
+    
 
 //    // create
 //    @GetMapping("/<project name>/new")

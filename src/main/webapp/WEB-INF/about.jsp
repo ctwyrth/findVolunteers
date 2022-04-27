@@ -9,14 +9,14 @@
 <head>
 	<meta charset="UTF-8">
 	
-	<title>findVolunteers - All Events</title>
+	<title>findVolunteers - About</title>
 	
 	<link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css" />
 	<link rel="stylesheet" type="text/css" href="/css/style.css">
 	
+	<script type="text/javascript" src="/js/script.js"></script>
 	<script src="/webjars/jquery/jquery.min.js"></script>
 	<script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
-	<script type="text/javascript" src="/js/script.js"></script>
 </head>
 
 <body>
@@ -33,13 +33,13 @@
 		        		<a href="/dashboard" class="nav-link text-white"><i class="fa-solid fa-gauge me-2"></i>Dashboard</a>
 		    		</li>
 		    	</c:if>
-		    	<li><a href="/about" class="nav-link text-white"><i class="fa-solid fa-circle-user me-2"></i>About</a>
+		    	<li><a href="/about" class="nav-link active" aria-current="page"><i class="fa-solid fa-circle-user me-2"></i>About</a>
 		    	</li>
 		    	<li>
 		        	<a href="/contact" class="nav-link text-white"><i class="fa-solid fa-envelope me-2"></i>Contact</a>
 		    	</li>
 		    	<li>
-		    		<a href="/allEvents" class="nav-link active" aria-current="page"><i class="fa-solid fa-calendar me-2"></i>Events</a>
+		    		<a href="/allEvents" class="nav-link text-white"><i class="fa-solid fa-calendar me-2"></i>Events</a>
 		    	</li>
 		    </ul>
    			<hr>
@@ -65,35 +65,10 @@
    				</c:otherwise>
    			</c:choose>
   		</div>
-		<div class="container-fluid" style="overflow-y: hidden;">
+ <!-- main body of page ---------------------------------------------------------------------- -->
+		<div style="overflow-x: hidden;">
 			<div class="row mx-auto mt-4" style="width: 90%;">
-			<%-- <h1 class="display-4">Hello, <c:out value="${user.firstName}" /></h1> --%>
-				<table class="table">
-					<thead>
-						<tr>
-							<th>Title</th>
-							<th>Host</th>
-							<th>Start Date</th>
-							<th>End Date</th>
-							<th>Zip Code</th>
-							<th>Contact Phone</th>
-							<th>Contact Email</th>
-						</tr>
-					</thead>
-					<tbody>
-						<c:forEach var="event" items="${events}">
-							<tr>
-								<td><c:out value="${event.title}" /></td>
-								<td><c:out value="${event.host}" /></td>
-								<td><fmt:formatDate pattern="MMMM dd, yyyy" value="${event.start}" /></td>
-								<td><fmt:formatDate pattern="MMMM dd, yyyy" value="${event.end}" /></td>
-								<td><c:out value="${event.zipCode}" /></td>
-								<td><c:out value="${event.contactPhone}" /></td>
-								<td><c:out value="${event.contactEmail}" /></td>
-							</tr>
-						</c:forEach>
-					</tbody>
-				</table>
+				
 			</div>
 		</div>
 	</main>

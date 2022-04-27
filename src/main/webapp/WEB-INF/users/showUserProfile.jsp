@@ -9,24 +9,24 @@
 <head>
 	<meta charset="UTF-8">
 	
-	<title>findVolunteers - All Events</title>
+	<title>findVolunteers</title>
 	
-	<link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css" />
 	<link rel="stylesheet" type="text/css" href="/css/style.css">
+	<link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css" />
 	
+	<script type="text/javascript" src="/js/script.js"></script>
 	<script src="/webjars/jquery/jquery.min.js"></script>
 	<script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
-	<script type="text/javascript" src="/js/script.js"></script>
 </head>
 
 <body>
-	<main>
+<main>
 		<div class="d-flex flex-column flex-shrink-0 p-4 text-white bg-pumpkin" style="width: 220px;">
 			<a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none"><span class="fs-4">findVolunteers</span></a>
 		    <hr>
 		    <ul class="nav nav-pills flex-column mb-auto">
 		    	<li class="nav-item">
-		        	<a href="/" class="nav-link text-white"><i class="fa-solid fa-house me-2"></i>Home</a>
+		        	<a href="/" class="nav-link text-white" aria-current="page"><i class="fa-solid fa-house me-2"></i>Home</a>
 		    	</li>
 		    	<c:if test="${user != null}">
 		    		<li>
@@ -39,7 +39,7 @@
 		        	<a href="/contact" class="nav-link text-white"><i class="fa-solid fa-envelope me-2"></i>Contact</a>
 		    	</li>
 		    	<li>
-		    		<a href="/allEvents" class="nav-link active" aria-current="page"><i class="fa-solid fa-calendar me-2"></i>Events</a>
+		    		<a href="/allEvents" class="nav-link active"><i class="fa-solid fa-calendar me-2"></i>Events</a>
 		    	</li>
 		    </ul>
    			<hr>
@@ -67,36 +67,16 @@
   		</div>
 		<div class="container-fluid" style="overflow-y: hidden;">
 			<div class="row mx-auto mt-4" style="width: 90%;">
-			<%-- <h1 class="display-4">Hello, <c:out value="${user.firstName}" /></h1> --%>
-				<table class="table">
-					<thead>
-						<tr>
-							<th>Title</th>
-							<th>Host</th>
-							<th>Start Date</th>
-							<th>End Date</th>
-							<th>Zip Code</th>
-							<th>Contact Phone</th>
-							<th>Contact Email</th>
-						</tr>
-					</thead>
-					<tbody>
-						<c:forEach var="event" items="${events}">
-							<tr>
-								<td><c:out value="${event.title}" /></td>
-								<td><c:out value="${event.host}" /></td>
-								<td><fmt:formatDate pattern="MMMM dd, yyyy" value="${event.start}" /></td>
-								<td><fmt:formatDate pattern="MMMM dd, yyyy" value="${event.end}" /></td>
-								<td><c:out value="${event.zipCode}" /></td>
-								<td><c:out value="${event.contactPhone}" /></td>
-								<td><c:out value="${event.contactEmail}" /></td>
-							</tr>
-						</c:forEach>
-					</tbody>
-				</table>
+				<h1 class="display-4"><c:out value="${user.firstName}" />'s User Profile:</h1>
+				<p><strong>City: </strong><c:out value="${profile.userCity}" /></p>
+				<p><strong>State: </strong><c:out value="${profile.userState}" /></p>
+				<p><strong>Zip Code: </strong><c:out value="${profile.userZipCode}" /></p>
+				<p><strong>Phone: </strong><c:out value="${profile.userPhone}" /></p>
+				<p><strong>Twitter: </strong><c:out value="${profile.userTwitter}" /></p>
+				<p><strong>Facebook: </strong><c:out value="${profile.userFacebook}" /></p>
+				<p><strong>Instagram: </strong><c:out value="${profile.userInstagram}" /></p>
 			</div>
 		</div>
-	</main>
 
 </body>
 </html>

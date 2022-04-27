@@ -90,9 +90,20 @@ main {
 .fw-semibold { font-weight: 600; }
 .lh-tight { line-height: 1.25; }
 
+
 .nav-pills .nav-link.active {
 	color: #fff;
 	background-color: #E8C07D;
+}
+
+.bg-moss {
+	--bs-bg-opacity: 1;
+	background-color: #6b825c;
+}
+
+.bg-pumpkin {
+	--bs-bg-opacity: 1;
+	background-color: #CC704B;
 }
 
 .btn-pumpkin {
@@ -107,6 +118,30 @@ main {
 	border-color: #E76900;
 }
 
+.btn-earth {
+	color: #fff;
+	background-color: #614124;
+	border-color: #614124;
+}
+
+.btn-earth:hover {
+	color: #fff;
+	background-color: #392615;
+	border-color: #392615;
+}
+
+.btn-offpumpkin {
+	color: #fff;
+	background-color: #F0A160;
+	border-color: #F0A160;
+}
+
+.btn-offpumpkin:hover {
+	color: #fff;
+	background-color: #B64003;
+	border-color: #B64003;
+}
+
 .btn-moss {
 	color: #fff;
 	background-color: #9FC088;
@@ -115,6 +150,6 @@ main {
 
 .btn-moss:hover {
 	color: #fff;
-	background-color: #087830;
-	border-color: #087830;
+	background-color: #6B825C;
+	border-color: #6B825C;
 }

@@ -3,16 +3,15 @@ package com.amt.findvolunteers.models;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-//import javax.persistence.JoinColumn;
-//import javax.persistence.JoinTable;
-//import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
@@ -53,18 +52,13 @@ public class User {
     @Size(min=8, max=128, message="Confirm Password must be between 8 and 128 characters.")
     private String confirm;
     
+    // For a One-To-One relationship
+    @OneToOne(mappedBy="user", cascade = CascadeType.ALL, fetch=FetchType.LAZY)
+    private UserProfile profile;
+    
     // For a ManyToOne relationship on the one side
     @OneToMany(mappedBy="poster", fetch = FetchType.LAZY) 
     private List<Event> events;
-
-    // For a many to many relationship
-//    @ManyToMany
-//    @JoinTable(
-//        name = "votes",
-//        joinColumns = @JoinColumn(name = "user_id"),
-//        inverseJoinColumns = @JoinColumn(name = "name_id")
-//    )
-//    private List<<tbd>> votedFor;
     
     @Column(updatable=false)
     @DateTimeFormat(pattern="yyyy-MM-dd")
@@ -128,20 +122,20 @@ public class User {
     public void setConfirm(String confirm) {
     	this.confirm = confirm;
     }
-    
-//  public List<<tbd>> getNames() {
-//    	return names;
-//  }
-//  	public void setNames(List<<tbd>> names) {
-//    	this.names = names;
-//  }
-//    
-//  public List<<tbd>> getVotedFor() {
-//		return votedFor;
-//	}
-//	public void setVotedFor(List<<tbd>> votedFor) {
-//		this.votedFor = votedFor;
-//	}
+
+	public UserProfile getProfile() {
+		return profile;
+	}
+	public void setProfile(UserProfile profile) {
+		this.profile = profile;
+	}
+
+	public List<Event> getEvents() {
+		return events;
+	}
+	public void setEvents(List<Event> events) {
+		this.events = events;
+	}
 
 	public Date getCreatedAt() {
     	return createdAt;

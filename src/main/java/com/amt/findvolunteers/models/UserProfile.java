@@ -5,12 +5,14 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
@@ -27,34 +29,18 @@ public class UserProfile {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
-//	if all the inputs are optional then are validations even needed?
-    
-	@Size(min=10, max=128, message="Please provide a street address.")
-	private String userAddress;
-
-	@Size(min=5, max=50, message="Please provide a street address.")
-	private String userAddress2;
-	 
-	@Size(min=3, max=128, message="Please provide a city name.")
 	private String userCity;
-	 
-	@Size(min=2, max=12, message="Please provide the state.")
+	
 	private String userState;
-	 
-	@Min(value=10, message="Please provide a valid zipcode.")
+	
 	private String userZipCode; // to accommodate five-four
-	 
-	@Min(value=7, message="Please provide a valid phone number.")
-	private String userPhone; // using type="tel" and pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
-	 
-	@Size(min=3, max=30, message="Please provide a valid Twitter username.")
+	
+	private String userPhone; // using type="tel" and pattern="(?:\(\d{3}\)|\d{3})[- ]?\d{3}[- ]?\d{4}"
+	
 	private String userTwitter;
-	 
-//	facebook only link, there is no username.
-	@Size(min=5, message="Please provide a valid Facebook username.")
+	
 	private String userFacebook;
-	 
-	@Size(min=3, max=30, message="Please provide a valid Instagarm username.")
+	
 	private String userInstagram;
 	 
 //	there is no way to share a link, only QR code or via their phone app directly.
@@ -67,7 +53,11 @@ public class UserProfile {
     @DateTimeFormat(pattern="yyyy-MM-dd")
     private Date updatedAt;
 
-
+    // One-To-One with User
+    @OneToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="user_id")
+    private User user;
+    
     // For a many to many relationship with Category
     @ManyToMany
     @JoinTable(
@@ -96,20 +86,6 @@ public class UserProfile {
 	}
 	public void setId(Long id) {
 		this.id = id;
-	}
-
-	public String getUserAddress() {
-		return userAddress;
-	}
-	public void setUserAddress(String userStreetAdd) {
-		this.userAddress = userStreetAdd;
-	}
-
-	public String getUserAddress2() {
-		return userAddress2;
-	}
-	public void setUserAddress2(String userAddress2) {
-		this.userAddress2 = userAddress2;
 	}
 
 	public String getUserCity() {
@@ -168,9 +144,17 @@ public class UserProfile {
 //		this.userWhatsApp = userWhatsApp;
 //	}
 	
+	public User getUser() {
+		return user;
+	}
+	public void setUser(User user) {
+		this.user = user;
+	}
+	
 	public List<Category> getUserInterests() {
 		return userInterests;
 	}
+
 	public void setUserInterests(List<Category> userInterests) {
 		this.userInterests = userInterests;
 	}

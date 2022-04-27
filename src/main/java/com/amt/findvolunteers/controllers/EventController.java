@@ -30,8 +30,8 @@ public class EventController {
     @Autowired
     private UserService userService;
 
-    // show all
-    @GetMapping("/events") // home or dashboard
+    // show all no login required
+    @GetMapping("/events")
     public String index(HttpSession session, Model model) {
         Long userId = (Long) session.getAttribute("user_id");
     	if (userId == null) {

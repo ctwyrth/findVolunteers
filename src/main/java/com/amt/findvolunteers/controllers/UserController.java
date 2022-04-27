@@ -10,13 +10,14 @@ import org.springframework.validation.BindingResult;
 //import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 //import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 //import org.springframework.web.bind.annotation.PutMapping;
 
 import com.amt.findvolunteers.models.LoginUser;
 import com.amt.findvolunteers.models.User;
+import com.amt.findvolunteers.models.UserProfile;
+import com.amt.findvolunteers.services.UserProfileService;
 import com.amt.findvolunteers.services.UserService;
 
 @Controller
@@ -24,6 +25,9 @@ public class UserController {
     // -----------------------variables-----------------------
     @Autowired
     private UserService userService;
+    
+    @Autowired
+    private UserProfileService userProfileService;
     
 //    @GetMapping("/home")
 //    public String home(HttpSession session, Model model) {
@@ -78,7 +82,44 @@ public class UserController {
     	return "redirect:/";
     }
     
-
+    // profile
+    @GetMapping("/users/profile")
+    public String showProfile(HttpSession session, Model model) {
+    	Long userId = (Long) session.getAttribute("user_id");
+    	if (userId == null) {
+    	    return "redirect:/";
+    	} else {
+    		User currentUser = userService.findUser(userId);
+    		model.addAttribute("user", currentUser);
+    		if (currentUser.getProfile() != null) {
+    			UserProfile currentUserProfile = userProfileService.findUserProfile(currentUser.getProfile().getId());
+    			model.addAttribute("profile", currentUserProfile);
+    			return "/users/showUserProfile.jsp";
+    		} else {
+    			model.addAttribute("profile", new UserProfile());
+    			return "/users/newUserProfile.jsp";
+    		}
+    	}
+    }
+    @PostMapping("/users/profile")
+    public String createProfile(@ModelAttribute("profile") UserProfile profile, BindingResult result, HttpSession session, Model model) {
+    	Long userId = (Long) session.getAttribute("user_id");
+    	if (userId == null) {
+    	    return "redirect:/";
+    	} else {
+    		userProfileService.postNewProfile(profile, result);
+    		if (result.hasErrors()) {
+    	    	return "/users/newUserprofile.jsp";
+    	    } else {
+    	    	User currentUser = userService.findUser(userId);
+    	    	profile.setUser(currentUser);
+    	    	userProfileService.createUserProfile(profile);
+    	    	return "redirect:/dashboard";
+    	    }
+    	}
+    }
+    
+    
 //    // display one found by id
 //    @GetMapping("/users/{id}")
 //    public String showOneuserById(@PathVariable("id") Long id, Model model) {
