@@ -12,15 +12,15 @@
 
 <title>Insert title here</title>
 
-<link rel="stylesheet" type="text/css" href="/css/style.css">
 <link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css" />
+<link rel="stylesheet" type="text/css" href="/css/style.css">
 
 <script type="text/javascript" src="/js/script.js"></script>
 <script src="/webjars/jquery/jquery.min.js"></script>
 <script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
 </head>
 <body class="bg-sea">
-	
+
 	<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
 	  <symbol id="bootstrap" viewBox="0 0 118 94">
 	    <title>Bootstrap</title>
@@ -102,8 +102,8 @@
 	</svg>
 
 	<main>
-<<<<<<< Updated upstream
-		<div class="d-flex flex-column flex-shrink-0 p-4 text-white bg-ocean"
+		<div
+			class="d-flex flex-column flex-shrink-0 p-4 text-white bg-ocean"
 			style="width: 260px; height: 100vh">
 			<a href="/"
 				class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
@@ -135,107 +135,57 @@
 			</ul>
 			<hr>
 			<div class="btn-group" role="group">
-				<button type="button" class="btn btn-sm btn-primary"
+				<button type="button" class="btn btn-sm btn-pumpkin"
 					data-bs-toggle="modal" data-bs-target="#registerModal">Register</button>
 
-				<button type="button" class="btn btn-sm btn-success"
+				<button type="button" class="btn btn-sm btn-moss"
 					data-bs-toggle="modal" data-bs-target="#loginModal">Login</button>
 			</div>
 		</div>
 
-=======
-		<div class="d-flex flex-column flex-shrink-0 p-4 text-white bg-dark" style="width: 260px; height:100vh;">
-			<a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
-      			<span class="fs-4">findVolunteers</span>
- 			</a>
-		    <hr>
-		    <ul class="nav nav-pills flex-column mb-auto">
-		    	<li class="nav-item">
-		        	<a href="#" class="nav-link active" aria-current="page">
-		          	<svg class="bi me-2" width="16" height="16"><use xlink:href="#home"></use></svg>
-		         	Home
-		        	</a>
-		    	</li>
-		    	<li>
-		        	<a href="#" class="nav-link text-white">
-		          	<svg class="bi me-2" width="16" height="16"><use xlink:href="#speedometer2"></use></svg>
-		        	Dashboard
-		        	</a>
-		    	</li>
-		    	<li>
-		        	<a href="#" class="nav-link text-white">
-		        	<svg class="bi me-2" width="16" height="16"><use xlink:href="#table"></use></svg>
-		        	Orders
-		        	</a>
-		    	</li>
-		    	<li>
-		        	<a href="#" class="nav-link text-white">
-		        	<svg class="bi me-2" width="16" height="16"><use xlink:href="#grid"></use></svg>
-		        	Products
-		        	</a>
-		    	</li>
-		    	<li>
-		    		<a href="#" class="nav-link text-white">
-		    		<svg class="bi me-2" width="16" height="16"><use xlink:href="#people-circle"></use></svg>
-		    		Customers
-		    		</a>
-		    	</li>
-		    </ul>
-   			<hr>
-		    <div class="btn-group" role="group">
-				<button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#registerModal">Register</button>
-				
-				<button type="button" class="btn btn-sm btn-success" data-bs-toggle="modal" data-bs-target="#loginModal">Login</button>
-		    </div>
-  		</div>
->>>>>>> Stashed changes
-		<div class="ms-4">
-			<h1 class="display-3 text-center">Welcome!</h1>
-			<div class="container">
-				<div class="card mb-3" style="max-width: 100%;">
-					<div class="row g-0">
-						<div class="col-md-4">
-							<img src="/img/landscape-blue-time.jpg"
-								class="img-fluid rounded-start" alt="...">
-						</div>
-						<div class="col-md-8 bg-wave">
-							<div class="card-body">
-								<h5 class="card-title text-dark">Card title</h5>
-								<p class="card-text text-dark">This is a wider card with supporting
-									text below as a natural lead-in to additional content. This
-									content is a little bit longer.</p>
-							</div>
-						</div>
+		<div class="">
+			<div class="row mx-auto mt-4" style="width: 90%;">
+				<div class="card bg-dark text-white">
+					<img src="/img/landscape.jpg" class="img-fluid" alt="..." >
+					<div class="card-img-overlay">
+						<h5 class="card-title">Card title</h5>
+						<p class="card-text">This is a wider card with supporting text
+							below as a natural lead-in to additional content. This content is
+							a little bit longer.</p>
+						<p class="card-text">Last updated 3 mins ago</p>
 					</div>
 				</div>
-				<form class="d-flex bg-dark">
-					<input class="form-control me-1 bg-ocean text-white" type="search" placeholder="Search"
-						aria-label="Search">
-					<button class="btn btn-outline-success" type="submit">Search</button>
+				<form class="d-flex search" style="max-width: 50%;">
+					<input class="form-control me-1 bg-" type="search"
+						placeholder="Search" aria-label="Search">
+					<button class="btn btn-outline-dark" type="submit">Search</button>
 				</form>
 				<p></p>
 			</div>
 
-			<div class="card-group">
-				<div class="card">
-					<img src="/img/landscape-volunteers.jpg" class="card-img-top" alt="...">
-					<div class="card-body bg-scheme">
-						<h5 class="card-title text-dark">Event Name</h5>
-						<p class="card-text text-dark">This is a .</p>
+			<div class="card-group ">
+				<div class="card m-2">
+					<img src="/img/landscape.jpg" class="card-img-top" alt="...">
+					<div class="card-body bg-green">
+						<h5 class="card-title">Card title</h5>
+						<p class="card-text">This is .</p>
 					</div>
 				</div>
-				<div class="card">
-					<img src="/img/landscape-dog.jpg" class="card-img-top" alt="...">
-					<div class="card-body bg-scheme">
-						<h5 class="card-title text-dark">Event Name</h5>
-						<p class="card-text text-dark">This card has .</p>
+				<div class="card m-2">
+					<img src="/img/landscape-volunteers.jpg" class="card-img-top"
+						alt="...">
+					<div class="card-body bg-green">
+						<h5 class="card-title">Card title</h5>
+						<p class="card-text">This card has .</p>
 					</div>
 				</div>
-				<div class="card">
-					<img src="/img/landscape-volunteers.jpg" class="card-img-top" alt="...">
-					<div class="card-body bg-scheme">
-						<h5 class="card-title text-dark">Event Name</h5>
-						<p class="card-text text-dark">This is a wider.</p>
+				<div class="card m-2">
+					<img src="/img/landscape-two-volunteers.jpg" class="card-img-top"
+						alt="...">
+					<div class="card-body bg-green">
+						<h5 class="card-title">Card title</h5>
+						<p class="card-text">This is .</p>
+
 					</div>
 				</div>
 			</div>

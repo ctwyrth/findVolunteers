@@ -19,29 +19,52 @@ main {
   overflow-y: hidden;
 }
 
-.bg-sea {
+
+
+
+
+.bg-ocean {
 	--bs-bg-opacity: 1;
 	background-color: rgba(204, 112, 75, 1)!important;
 }
-.bg-wave {
-	color: #fff;
-	background-color: #E8C07D;
-	
-}
-.bg-ocean {
+.bg-sea {
 	--bs-bg-opacity: 1;
-	background-color: rgba(159, 192, 136, 1)!important;
+	background-color: ;
 }
-.bg-scheme {
+.bg-green {
 	color: #fff;
-	background-color: #E8C07D;
+	background-color: #9FC088;
+}
+
+.nav-pills .nav-link.active {
+    color: #fff;
+    background-color: #E8C07D;
 }
 
 .btn-pumpkin {
-	color: #fff;
-	background-color: #9FC088;
-	border-color: #9FC088;
+    color: #fff;
+    background-color: #FF8E18;
+    border-color: #CC704B;
 }
+
+.btn-pumpkin:hover {
+    color: #fff;
+    background-color: #B64003;
+    border-color: #FE8C03;
+}
+
+.btn-moss {
+    color: #fff;
+    background-color: #9FC088;
+    border-color: #9FC088;
+}
+.btn-moss:hover {
+    color: #fff;
+    background-color: #008018;
+    border-color: #9FC088;
+}
+
+
 
 
 .b-example-divider {
