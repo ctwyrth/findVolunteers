@@ -1,8 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
-<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
-<%@ page isErrorPage="true" %>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ page isErrorPage="true"%>
 
 <!DOCTYPE html>
 <html>
@@ -62,7 +63,7 @@
   		</div>
 		<div class="container-fluid" style="overflow-y: hidden;">
 			<div class="row mx-auto mt-4" style="width: 90%;">
-			<%-- <h1 class="display-4">Hello, <c:out value="${user.firstName}" /></h1> --%>
+				<%-- <h1 class="display-4">Hello, <c:out value="${user.firstName}" /></h1> --%>
 				<table class="table">
 					<thead>
 						<tr>
@@ -80,8 +81,10 @@
 							<tr>
 								<td><c:out value="${event.title}" /></td>
 								<td><c:out value="${event.host}" /></td>
-								<td><fmt:formatDate pattern="MMMM dd, yyyy" value="${event.start}" /></td>
-								<td><fmt:formatDate pattern="MMMM dd, yyyy" value="${event.end}" /></td>
+								<td><fmt:formatDate pattern="MMMM dd, yyyy"
+										value="${event.start}" /></td>
+								<td><fmt:formatDate pattern="MMMM dd, yyyy"
+										value="${event.end}" /></td>
 								<td><c:out value="${event.zipCode}" /></td>
 								<td><c:out value="${event.contactPhone}" /></td>
 								<td><c:out value="${event.contactEmail}" /></td>
@@ -89,9 +92,47 @@
 						</c:forEach>
 					</tbody>
 				</table>
+				<div style="overflow-x: hidden;">
+				<div class="card mb-3 p-0" style="max-width: 100%;">
+					<div class="row g-0">
+						<div class="col-md-4">
+							<img src="/img/landscape-volunteers.jpg"
+								class="img-fluid rounded-start" alt="...">
+						</div>
+						<div class="col-md-8">
+							<div class="card-body">
+								<h5 class="card-title">Title</h5>
+								<h6>Date</h6>
+								<p class="card-text">Description.</p>
+								<button class="d-flex justify-content-end btn btn-info">Show
+									Event</button>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="card mb-3 p-0" style="max-width: 100%;">
+					<div class="row g-0">
+						<div class="col-md-4">
+							<img src="/img/landscape-volunteers.jpg"
+								class="img-fluid rounded-start" alt="...">
+						</div>
+						<div class="col-md-8">
+							<div class="card-body">
+								<h5 class="card-title">Title</h5>
+								<h6>Date</h6>
+								<p class="card-text">Description.</p>
+								<button class="d-flex justify-content-end btn btn-info">Show
+									Event</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
 			</div>
 		</div>
 	</main>
+
 	<div class="modal fade text-dark" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
 		<div class="modal-dialog modal-dialog-centered">
 			<div class="modal-content">
@@ -153,5 +194,6 @@
     		</div>
     	</div>
     </div>
+
 </body>
 </html>

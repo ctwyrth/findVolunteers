@@ -22,7 +22,7 @@
 
 <body>
 	<main>
-		<div class="d-flex flex-column flex-shrink-0 p-4 text-white bg-pumpkin" style="width: 220px;">
+		<div class="d-flex flex-column flex-shrink-0 p-4 text-white bg-pumpkin vh-100" style="width: 220px;">
 			<a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none"><span class="fs-4">findVolunteers</span></a>
 		    <hr>
 		    <ul class="nav nav-pills flex-column mb-auto">

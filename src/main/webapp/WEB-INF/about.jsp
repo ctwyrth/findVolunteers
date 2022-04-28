@@ -1,8 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
-<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
-<%@ page isErrorPage="true" %>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ page isErrorPage="true"%>
 
 <!DOCTYPE html>
 <html>
@@ -22,6 +23,7 @@
 
 <body>
 	<main>
+
 		<div class="d-flex flex-column flex-shrink-0 p-4 text-white bg-pumpkin" style="width: 220px;">
 			<a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none"><span class="fs-4">findVolunteers</span></a>
 		    <hr>
@@ -62,9 +64,68 @@
   		</div>
  <!-- main body of page ---------------------------------------------------------------------- -->
 		<div style="overflow-x: hidden;">
-			<div class="row mx-auto mt-4" style="width: 90%;">
-				
+			<div class="row mx-auto mt-4" style="width: 78%;">
+				<h1>About the page</h1>
+				<p class="lh-base">findVolunteers was developed to match
+					community-minded people with volunteer opportunities in their
+					neighborhoods and surrounding areas. It was also designed to
+					provide local community services providers with a means to
+					publicize their need for human assistance.</p>
+				<p class="lh-base">The findVolunteers project was developed by
+					three Coding Dojo bootcamp students to fill a void they felt
+					existed in the local/community philanthropic space. Recognizing
+					there were an increasing number of "looking for
+					volunteers/volunteers needed" posts appearing across the social
+					media landscape, the findVolunteers' developers wanted to provide a
+					unified system to allow for people looking to give back to their
+					communities through volunteerism access to open opportunities in
+					their area. And, conversely, a system for organizations/services to
+					post opportunities they want their communities to be aware of.</p>
+
+				<p class="lh-base">Whether managing animals at a no-kill rescue
+					shelter, serving hot meals at a homeless shelter, or aiding in
+					rebuilding homes after disaster recovery, findVolunteers is a place
+					for anyone looking to be civically minded with their time and labor
+					to come and see those opportunities... and for those opportunities
+					to have a place to be seen more readily.</p>
+				<p></p>
+				<p></p>
+				<p></p>
 			</div>
+			<div style="overflow-x: hidden;">
+				<div class="row mx-auto mt-4" style="width: 90%;">
+					<p></p>
+				</div>
+				<div class="row mx-auto p-0" style="width: 90%">
+					<div class="card-group p-0">
+						<div class="card m-2">
+							<img src="/img/new.jpg" class="card-img-top" alt="...">
+							<div class="card-body bg-green">
+								<p class="card-text">Hello I'm Thomas in Portland, Oregon. <br />
+								Fav Orgs: Free Tacos</p>
+							</div>
+						</div>
+						<div class="card m-2">
+							<img src="/img/aaaa.jpg" class="card-img-top"
+								alt="...">
+							<div class="card-body bg-green">
+								<p class="card-text">Hello I'm America in Los Angeles, Californis. <br />
+								Fav Orgs: Face Painting for Pugs</p>
+							</div>
+						</div>
+						<div class="card m-2">
+							<img src="/img/new.jpg" class="card-img-top"
+								alt="...">
+							<div class="card-body bg-green">
+								<p class="card-text">Hello I'm Massoud in Seattle, Washington. <br />
+								Fave Orgs: Free Haircuts for Balding People</p>
+
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
 		</div>
 	</main>
 	<div class="modal fade text-dark" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
