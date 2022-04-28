@@ -11,12 +11,13 @@
 	
 	<title>findVolunteers - Dashboard</title>
 	
-	<link rel="stylesheet" type="text/css" href="/css/style.css">
 	<link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css" />
+	<link rel="stylesheet" type="text/css" href="/css/style.css">
 	
 	<script src="/webjars/jquery/jquery.min.js"></script>
 	<script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="/js/script.js"></script>
+	<script src="https://kit.fontawesome.com/c45b326a96.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -44,23 +45,17 @@
 		    </ul>
    			<hr>
    			<c:choose>
-   				<c:when test="${!user}">
-				    <div class="btn-group" role="group">
+   				<c:when test="${user == null}">
+				    <div class="btn-group-vertical" role="group">
 						<button type="button" class="btn btn-sm btn-offpumpkin" data-bs-toggle="modal" data-bs-target="#registerModal">Register</button>
 						<button type="button" class="btn btn-sm btn-moss" data-bs-toggle="modal" data-bs-target="#loginModal">Login</button>
 		  			</div>
    				</c:when>
    				<c:otherwise>
-   					<div class="dropdown">
-				    	<a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
-				    	<img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2">
-				    	<strong>mdo</strong>
-				    	</a>
-				    	<ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
-				    		<li><a class="dropdown-item" href="/users/${user.id}/profile">Profile</a></li>
-				    		<li><hr class="dropdown-divider"></li>
-				    		<li><a class="dropdown-item" href="/logout">Sign out</a></li>
-				    	</ul>
+   					<div class="text-center mb-3">Welcome, <c:out value="${user.firstName}" />!</div>
+   					<div class="btn-group-vertical" role="group">
+				    	<button class="btn btn-sm btn-moss" onclick="goProfile()">Profile</button>
+				    	<button class="btn btn-sm btn-danger" onclick="goLogOut()">Sign Out</button>
 				    </div>
    				</c:otherwise>
    			</c:choose>

@@ -35,9 +35,14 @@ public class MainController {
 
     // landing page
     @GetMapping("/")
-    public String index(Model model) {
+    public String index(Model model, HttpSession session) {
     	model.addAttribute("newUser", new User());
     	model.addAttribute("newLogin", new LoginUser());
+    	if (session.getAttribute("user_id") != null) {
+    		Long userId = (Long) session.getAttribute("user_id");
+    		User currentUser = userService.findUser(userId);
+    		model.addAttribute("user", currentUser);
+    	}
         return "/index.jsp";
     }
     
@@ -55,13 +60,27 @@ public class MainController {
     
     // about no login required
     @GetMapping("/about")
-    public String about() {
+    public String about(HttpSession session, Model model) {
+    	model.addAttribute("newUser", new User());
+    	model.addAttribute("newLogin", new LoginUser());
+    	if (session.getAttribute("user_id") != null) {
+    		Long userId = (Long) session.getAttribute("user_id");
+    		User currentUser = userService.findUser(userId);
+    		model.addAttribute("user", currentUser);
+    	}
     	return "/about.jsp";
     }
 
     // contact no login required
     @GetMapping("/contact")
-    public String contact() {
+    public String contact(HttpSession session, Model model) {
+    	model.addAttribute("newUser", new User());
+    	model.addAttribute("newLogin", new LoginUser());
+    	if (session.getAttribute("user_id") != null) {
+    		Long userId = (Long) session.getAttribute("user_id");
+    		User currentUser = userService.findUser(userId);
+    		model.addAttribute("user", currentUser);
+    	}
     	return "/contact.jsp";
     }
     @PostMapping("/contact")
@@ -70,9 +89,16 @@ public class MainController {
     }
     
     @GetMapping("/allEvents")
-    public String allEvents(Model model) {
+    public String allEvents(HttpSession session, Model model) {
     	List<Event> events = eventService.allEvents();
     	model.addAttribute("events", events);
+    	model.addAttribute("newUser", new User());
+    	model.addAttribute("newLogin", new LoginUser());
+    	if (session.getAttribute("user_id") != null) {
+    		Long userId = (Long) session.getAttribute("user_id");
+    		User currentUser = userService.findUser(userId);
+    		model.addAttribute("user", currentUser);
+    	}
     	return "events.jsp";
     }
     

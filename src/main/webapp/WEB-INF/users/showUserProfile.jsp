@@ -11,16 +11,17 @@
 	
 	<title>findVolunteers</title>
 	
-	<link rel="stylesheet" type="text/css" href="/css/style.css">
 	<link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css" />
+	<link rel="stylesheet" type="text/css" href="/css/style.css">
 	
 	<script type="text/javascript" src="/js/script.js"></script>
 	<script src="/webjars/jquery/jquery.min.js"></script>
 	<script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+	<script src="https://kit.fontawesome.com/c45b326a96.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
-<main>
+	<main>
 		<div class="d-flex flex-column flex-shrink-0 p-4 text-white bg-pumpkin" style="width: 220px;">
 			<a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none"><span class="fs-4">findVolunteers</span></a>
 		    <hr>
@@ -44,39 +45,38 @@
 		    </ul>
    			<hr>
    			<c:choose>
-   				<c:when test="${!user}">
-				    <div class="btn-group" role="group">
+   				<c:when test="${user == null}">
+				    <div class="btn-group-vertical" role="group">
 						<button type="button" class="btn btn-sm btn-offpumpkin" data-bs-toggle="modal" data-bs-target="#registerModal">Register</button>
 						<button type="button" class="btn btn-sm btn-moss" data-bs-toggle="modal" data-bs-target="#loginModal">Login</button>
 		  			</div>
    				</c:when>
    				<c:otherwise>
-   					<div class="dropdown">
-				    	<a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
-				    	<img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2">
-				    	<strong>mdo</strong>
-				    	</a>
-				    	<ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
-				    		<li><a class="dropdown-item" href="/users/${user.id}/profile">Profile</a></li>
-				    		<li><hr class="dropdown-divider"></li>
-				    		<li><a class="dropdown-item" href="/logout">Sign out</a></li>
-				    	</ul>
+   					<div class="text-center mb-3">Welcome, <c:out value="${user.firstName}" />!</div>
+   					<div class="btn-group-vertical" role="group">
+				    	<button class="btn btn-sm btn-moss" onclick="goProfile()">Profile</button>
+				    	<button class="btn btn-sm btn-danger" onclick="goLogOut()">Sign Out</button>
 				    </div>
    				</c:otherwise>
    			</c:choose>
   		</div>
 		<div class="container-fluid" style="overflow-y: hidden;">
 			<div class="row mx-auto mt-4" style="width: 90%;">
-				<h1 class="display-4"><c:out value="${user.firstName}" />'s User Profile:</h1>
-				<p><strong>City: </strong><c:out value="${profile.userCity}" /></p>
-				<p><strong>State: </strong><c:out value="${profile.userState}" /></p>
-				<p><strong>Zip Code: </strong><c:out value="${profile.userZipCode}" /></p>
-				<p><strong>Phone: </strong><c:out value="${profile.userPhone}" /></p>
-				<p><strong>Twitter: </strong><c:out value="${profile.userTwitter}" /></p>
-				<p><strong>Facebook: </strong><c:out value="${profile.userFacebook}" /></p>
-				<p><strong>Instagram: </strong><c:out value="${profile.userInstagram}" /></p>
+				<h1 class="display-4 ms-0 px-0"><em><c:out value="${user.firstName}" />'s User Profile:</em></h1>
+				<div class="py-6 pt-3">
+					<p><strong>City: </strong><c:out value="${profile.userCity}" /></p>
+					<p><strong>State: </strong><c:out value="${profile.userState}" /></p>
+					<p><strong>Zip Code: </strong><c:out value="${profile.userZipCode}" /></p>
+					<p class="mb-3"><strong>Phone: </strong><c:out value="${profile.userPhone}" /></p>
+					<h4><em>Social Media:</em></h4>
+					<p class="ms-2"><strong>Twitter: </strong><c:out value="${profile.userTwitter}" /></p>
+					<p class="ms-2"><strong>Facebook: </strong><c:out value="${profile.userFacebook}" /></p>
+					<p class="ms-2"><strong>Instagram: </strong><c:out value="${profile.userInstagram}" /></p>
+				</div>
+				<hr />
+				<a href="/users/profile/${profile.id}/edit" class="col-2 btn btn-sm btn-moss">Update Profile</a>
 			</div>
 		</div>
-
+	</main>
 </body>
 </html>

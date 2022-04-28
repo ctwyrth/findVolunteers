@@ -45,23 +45,17 @@
 		    </ul>
    			<hr>
    			<c:choose>
-   				<c:when test="${!user}">
-				    <div class="btn-group" role="group">
+   				<c:when test="${user == null}">
+				    <div class="btn-group-vertical" role="group">
 						<button type="button" class="btn btn-sm btn-offpumpkin" data-bs-toggle="modal" data-bs-target="#registerModal">Register</button>
 						<button type="button" class="btn btn-sm btn-moss" data-bs-toggle="modal" data-bs-target="#loginModal">Login</button>
 		  			</div>
    				</c:when>
    				<c:otherwise>
-   					<div class="dropdown">
-				    	<a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
-				    	<img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2">
-				    	<strong>mdo</strong>
-				    	</a>
-				    	<ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
-				    		<li><a class="dropdown-item" href="/users/${user.id}/profile">Profile</a></li>
-				    		<li><hr class="dropdown-divider"></li>
-				    		<li><a class="dropdown-item" href="/logout">Sign out</a></li>
-				    	</ul>
+   					<div class="text-center mb-3">Welcome, <c:out value="${user.firstName}" />!</div>
+   					<div class="btn-group-vertical" role="group">
+				    	<button class="btn btn-sm btn-moss" onclick="goProfile()">Profile</button>
+				    	<button class="btn btn-sm btn-danger" onclick="goLogOut()">Sign Out</button>
 				    </div>
    				</c:otherwise>
    			</c:choose>
@@ -110,13 +104,13 @@
 						<div class="card-body bg-green">
 							<h5 class="card-title">Card title</h5>
 							<p class="card-text">This is .</p>
-	
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</main>
+	
 	<div class="modal fade text-dark" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
 		<div class="modal-dialog modal-dialog-centered">
 			<div class="modal-content">
