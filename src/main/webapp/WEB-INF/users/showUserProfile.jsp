@@ -21,8 +21,8 @@
 </head>
 
 <body>
-	<main>
-		<div class="d-flex flex-column flex-shrink-0 p-4 text-white bg-pumpkin" style="width: 220px;">
+	<main class="">
+		<div class="d-flex flex-column flex-shrink-0 p-4 text-white bg-pumpkin vh-100" style="width: 220px;">
 			<a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none"><span class="fs-4">findVolunteers</span></a>
 		    <hr>
 		    <ul class="nav nav-pills flex-column mb-auto">
@@ -60,21 +60,27 @@
    				</c:otherwise>
    			</c:choose>
   		</div>
-		<div class="container-fluid" style="overflow-y: hidden;">
+  		<div class="py-6 pt-3">
+			<div class="container-fluid" style="overflow-y: hidden;">
 			<div class="row mx-auto mt-4" style="width: 90%;">
-				<h1 class="display-4 ms-0 px-0"><em><c:out value="${user.firstName}" />'s User Profile:</em></h1>
-				<div class="py-6 pt-3">
-					<p><strong>City: </strong><c:out value="${profile.userCity}" /></p>
-					<p><strong>State: </strong><c:out value="${profile.userState}" /></p>
-					<p><strong>Zip Code: </strong><c:out value="${profile.userZipCode}" /></p>
-					<p class="mb-3"><strong>Phone: </strong><c:out value="${profile.userPhone}" /></p>
-					<h4><em>Social Media:</em></h4>
-					<p class="ms-2"><strong>Twitter: </strong><c:out value="${profile.userTwitter}" /></p>
-					<p class="ms-2"><strong>Facebook: </strong><c:out value="${profile.userFacebook}" /></p>
-					<p class="ms-2"><strong>Instagram: </strong><c:out value="${profile.userInstagram}" /></p>
+				<h1 class="display-4 ms-0 px-0"><em><c:out value="${user.firstName}" />'s User Profile</em></h1>
+				<p></p>
+					<div class="shadow p-3 mb-5 bg-body rounded">
+						<p><strong class="">City: </strong><c:out value="${profile.userCity}" /></p>
+						<p><strong>State:</strong><c:out value="${profile.userState}" /></p>
+						<p><strong>Zip Code: </strong><c:out value="${profile.userZipCode}" /></p>
+						<p class="mb-3"><strong>Phone: </strong><c:out value="${profile.userPhone}" /></p>
+					</div>
+					<div class="shadow p-3 mb-5 bg-body rounded">
+						<div class="box">
+							<h4><em>Social Media</em></h4>
+							<p class="ms-2"><strong>Twitter: </strong><c:out value="${profile.userTwitter}" /></p>
+							<p class="ms-2"><strong>Facebook: </strong><c:out value="${profile.userFacebook}" /></p>
+							<p class="ms-2"><strong>Instagram: </strong><c:out value="${profile.userInstagram}" /></p>
+						</div>					
+					</div>
+					<a href="/users/profile/${profile.id}/edit" class="col-2 btn btn-sm btn-moss">Update Profile</a>
 				</div>
-				<hr />
-				<a href="/users/profile/${profile.id}/edit" class="col-2 btn btn-sm btn-moss">Update Profile</a>
 			</div>
 		</div>
 	</main>

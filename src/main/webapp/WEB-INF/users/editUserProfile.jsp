@@ -62,7 +62,7 @@
   		</div>
 		<div class="container-fluid" style="overflow-y: hidden;">
 			<div class="row mx-auto mt-4" style="width: 90%;">
-				<h1 class="display-4">User Profile:</h1>
+				<h1 class="display-4">User Profile</h1>
 				<form:form action="/users/profile/${profile.id}/edit" modelAttribute="profile" method="POST" class="row border border-1 rounded bg-light g-3">
 					<input type="hidden" name="_method" value="PUT" />
 					<p class="my-1"> <em> Please note all fields below are optional:</em></p>
@@ -160,7 +160,7 @@
 	  				</div>
 	  				<hr />
 	  				<div class="mb-3 text-center">
-		  				<input type="submit" value="Update" class="col-2 btn btn-sm btn-primary" />  				
+		  				<input type="submit" value="Update" class="col-2 btn btn-sm btn-moss" />  				
 	  				</div>
 	  			</form:form>
 	  		</div>
