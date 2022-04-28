@@ -9,7 +9,7 @@
 <head>
 	<meta charset="UTF-8">
 	
-	<title>User Profile</title>
+	<title>findVolunteers - Create Profile</title>
 	
 	<link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css" />
 	<link rel="stylesheet" type="text/css" href="/css/style.css">
@@ -164,6 +164,6 @@
 	  			</form:form>
 	  		</div>
   		</div>
-	</div>
+	</main>
 </body>
 </html>

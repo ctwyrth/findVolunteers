@@ -9,7 +9,7 @@
 <head>
 	<meta charset="UTF-8">
 	
-	<title>findVolunteers</title>
+	<title>findVolunteers - User Profile</title>
 	
 	<link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css" />
 	<link rel="stylesheet" type="text/css" href="/css/style.css">
@@ -27,7 +27,7 @@
 		    <hr>
 		    <ul class="nav nav-pills flex-column mb-auto">
 		    	<li class="nav-item">
-		        	<a href="/" class="nav-link text-white" aria-current="page"><i class="fa-solid fa-house me-2"></i>Home</a>
+		        	<a href="/" class="nav-link text-white"><i class="fa-solid fa-house me-2"></i>Home</a>
 		    	</li>
 		    	<c:if test="${user != null}">
 		    		<li>

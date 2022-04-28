@@ -65,12 +65,10 @@
 			<div class="row mx-auto mt-4" style="width: 90%;">
 				<div class="card bg-dark text-white p-0" style="height: 360px; overflow-y: hidden;">
 					<img src="/img/landscape.jpg" class="img-fluid" alt="..." >
-					<div class="card-img-overlay">
-						<h5 class="card-title">Card title</h5>
-						<p class="card-text">This is a wider card with supporting text
-							below as a natural lead-in to additional content. This content is
-							a little bit longer.</p>
-						<p class="card-text">Last updated 3 mins ago</p>
+					<div class="card-img-overlay p-4 mt-5">
+						<h3 class="card-title"><em>Finding Fulfillment...</em></h3>
+						<p class="card-text">Have some extra time on your hands? Looking to give back to your community but can't afford to donate money? Try your hand at volunteering! Local organizations are looking for help doing everything from food service to dog grooming, to home building.</p>
+						<p class="card-text">And you could be the PERFECT fit for the job.</p>
 					</div>
 				</div>
 				<div class="mt-4">
@@ -82,31 +80,18 @@
 				<p></p>
 			</div>
 			<div class="row mx-auto p-0" style="width: 90%">
-				<div class="card-group p-0">
-					<div class="card m-2">
-						<img src="/img/landscape.jpg" class="card-img-top" alt="...">
-						<div class="card-body bg-green">
-							<h5 class="card-title">Card title</h5>
-							<p class="card-text">This is .</p>
+				<c:forEach var="e" items="${events}">
+					<div class="col-sm-4">
+						<div class="card px-0 mb-5">
+						  <img src="/img/landscape-soup-kitchen.jpg" class="card-img-top" alt="volunteers packing food into boxes">
+						  <div class="card-body">
+						    <h5 class="card-title"><c:out value="${e.title}" /></h5>
+						    <p class="card-text"><c:out value="${e.description}" /></p>
+						    <a href="/events/${e.id}" class="btn btn-primary">More</a>
+						  </div>
 						</div>
 					</div>
-					<div class="card m-2">
-						<img src="/img/landscape-volunteers.jpg" class="card-img-top"
-							alt="...">
-						<div class="card-body bg-green">
-							<h5 class="card-title">Card title</h5>
-							<p class="card-text">This card has .</p>
-						</div>
-					</div>
-					<div class="card m-2">
-						<img src="/img/landscape-two-volunteers.jpg" class="card-img-top"
-							alt="...">
-						<div class="card-body bg-green">
-							<h5 class="card-title">Card title</h5>
-							<p class="card-text">This is .</p>
-						</div>
-					</div>
-				</div>
+				</c:forEach>
 			</div>
 		</div>
 	</main>

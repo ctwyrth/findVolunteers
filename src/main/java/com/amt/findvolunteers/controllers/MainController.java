@@ -38,6 +38,7 @@ public class MainController {
     public String index(Model model, HttpSession session) {
     	model.addAttribute("newUser", new User());
     	model.addAttribute("newLogin", new LoginUser());
+    	model.addAttribute("events", eventService.allEvents());
     	if (session.getAttribute("user_id") != null) {
     		Long userId = (Long) session.getAttribute("user_id");
     		User currentUser = userService.findUser(userId);
@@ -53,7 +54,10 @@ public class MainController {
     		return "redirect:/";
     	} else {
     		User currentUser = userService.findUser(userId);
+    		List<Event> events = eventService.allEvents();
     		model.addAttribute("user", currentUser);
+    	    model.addAttribute("events", events);
+            model.addAttribute("newEvent", new Event());
     		return "dashboard.jsp";
     	}
     }

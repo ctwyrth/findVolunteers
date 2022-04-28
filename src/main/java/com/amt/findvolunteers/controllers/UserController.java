@@ -30,7 +30,7 @@ public class UserController {
     
     @Autowired
     private UserProfileService userProfileService;
-
+    
     // create new
     @GetMapping("/register")
     public String index(Model model) {

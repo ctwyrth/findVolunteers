@@ -61,74 +61,26 @@
    				</c:otherwise>
    			</c:choose>
   		</div>
-		<div class="container-fluid" style="overflow-y: hidden;">
-			<div class="row mx-auto mt-4" style="width: 90%;">
-				<%-- <h1 class="display-4">Hello, <c:out value="${user.firstName}" /></h1> --%>
-				<table class="table">
-					<thead>
-						<tr>
-							<th>Title</th>
-							<th>Host</th>
-							<th>Start Date</th>
-							<th>End Date</th>
-							<th>Zip Code</th>
-							<th>Contact Phone</th>
-							<th>Contact Email</th>
-						</tr>
-					</thead>
-					<tbody>
-						<c:forEach var="event" items="${events}">
-							<tr>
-								<td><c:out value="${event.title}" /></td>
-								<td><c:out value="${event.host}" /></td>
-								<td><fmt:formatDate pattern="MMMM dd, yyyy"
-										value="${event.start}" /></td>
-								<td><fmt:formatDate pattern="MMMM dd, yyyy"
-										value="${event.end}" /></td>
-								<td><c:out value="${event.zipCode}" /></td>
-								<td><c:out value="${event.contactPhone}" /></td>
-								<td><c:out value="${event.contactEmail}" /></td>
-							</tr>
-						</c:forEach>
-					</tbody>
-				</table>
-				<div style="overflow-x: hidden;">
-				<div class="card mb-3 p-0" style="max-width: 100%;">
-					<div class="row g-0">
-						<div class="col-md-4">
-							<img src="/img/landscape-volunteers.jpg"
-								class="img-fluid rounded-start" alt="...">
-						</div>
-						<div class="col-md-8">
-							<div class="card-body">
-								<h5 class="card-title">Title</h5>
-								<h6>Date</h6>
-								<p class="card-text">Description.</p>
-								<button class="d-flex justify-content-end btn btn-info">Show
-									Event</button>
+		<div class="container p-0" style="overflow-x: hidden;">
+			<div class="col-10 mx-auto mt-4">
+			<h1 class="display-4 mb-4 text-center" style="color: #9FC088">Current Volunteer Opportunities</h1>
+				<c:forEach var="e" items="${events}">
+					<div class="card mb-5 p-0" style="max-width: 100%;">
+						<div class="row g-0">
+							<div class="col-md-4">
+								<img src="/img/landscape-volunteers.jpg" class="img-fluid rounded-start" alt="...">
+							</div>
+							<div class="col-md-8">
+								<div class="card-body">
+									<h2 class="card-title"><c:out value="${e.title}" /></h2>
+									<h6><em><fmt:formatDate pattern="MMMM dd, yyyy" value="${e.start}" /> - <fmt:formatDate pattern="MMMM dd, yyyy" value="${e.end}" /></em></h6>
+									<p class="card-text"><c:out value="${e.description}" /></p>
+									<a href="/events/${e.id}/edit" class="btn btn-sm btn-moss">Edit</a>
+								</div>
 							</div>
 						</div>
 					</div>
-				</div>
-				<div class="card mb-3 p-0" style="max-width: 100%;">
-					<div class="row g-0">
-						<div class="col-md-4">
-							<img src="/img/landscape-volunteers.jpg"
-								class="img-fluid rounded-start" alt="...">
-						</div>
-						<div class="col-md-8">
-							<div class="card-body">
-								<h5 class="card-title">Title</h5>
-								<h6>Date</h6>
-								<p class="card-text">Description.</p>
-								<button class="d-flex justify-content-end btn btn-info">Show
-									Event</button>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-
+				</c:forEach>
 			</div>
 		</div>
 	</main>

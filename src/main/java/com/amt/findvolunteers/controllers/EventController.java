@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 
 import com.amt.findvolunteers.models.Event;
+import com.amt.findvolunteers.models.LoginUser;
 import com.amt.findvolunteers.models.User;
 import com.amt.findvolunteers.services.EventService;
 import com.amt.findvolunteers.services.UserService;
@@ -35,12 +36,16 @@ public class EventController {
     public String index(HttpSession session, Model model) {
         Long userId = (Long) session.getAttribute("user_id");
     	if (userId == null) {
-    	    return "redirect:/";
+    		model.addAttribute("newUser", new User());
+    		model.addAttribute("newLogin", new LoginUser());
+    	    return "/events.jsp";
     	} else {
             User currentUser = userService.findUser(userId);
             List<Event> events = eventService.allEvents();
     	    model.addAttribute("events", events);
-            model.addAttribute(currentUser);
+            model.addAttribute("user", currentUser);
+            model.addAttribute("newUser", new User());
+    		model.addAttribute("newLogin", new LoginUser());
             return "/events.jsp";
         }
     }
@@ -68,7 +73,7 @@ public class EventController {
     	    	User currentUser = userService.findUser(userId);
     	    	event.setPoster(currentUser);
     	    	eventService.createEvent(event);
-    	    	return "redirect:/events";
+    	    	return "redirect:/dashboard";
     	    }
         }
     }
