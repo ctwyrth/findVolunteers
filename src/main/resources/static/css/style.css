@@ -153,3 +153,8 @@ main {
 	background-color: #6B825C;
 	border-color: #6B825C;
 }
+.bg-tempcolor {
+	--bs-bg-opacity: 1;
+	background-color: #ECECEC;
+	
+}
