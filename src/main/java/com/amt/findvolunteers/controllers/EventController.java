@@ -108,17 +108,18 @@ public class EventController {
     	if (userId == null) {
     	    return "redirect:/";
     	} else {
+    		eventService.postNew(event, result);
     		if (result.hasErrors()) {
     			return "/events/edit.jsp";
     		} else {
     			Event eventToEdit = eventService.findEvent(id);
     			if (userId.equals(eventToEdit.getPoster().getId())) {
-    		    eventService.updateEvent(event);
-    		    return "redirect:/events";
-    		} else {
-    		    return "redirect:/home";
+    				eventService.updateEvent(event);
+    				return "redirect:/events";
+    			} else {
+    				return "redirect:/home";
+    			}
     		}
-	    }
         }
     }
 

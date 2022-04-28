@@ -10,9 +10,11 @@ import org.springframework.validation.BindingResult;
 //import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 //import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 //import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 
 import com.amt.findvolunteers.models.LoginUser;
 import com.amt.findvolunteers.models.User;
@@ -28,18 +30,6 @@ public class UserController {
     
     @Autowired
     private UserProfileService userProfileService;
-    
-//    @GetMapping("/home")
-//    public String home(HttpSession session, Model model) {
-//    	Long userId = (Long) session.getAttribute("user_id");
-//    	if (userId == null) {
-//    		return "redirect:/";
-//    	} else {
-//    		User currentUser = userService.findUser(userId);
-//    		model.addAttribute("user", currentUser);
-//    		return "home.jsp";
-//    	}
-//    }
 
     // create new
     @GetMapping("/register")
@@ -91,8 +81,10 @@ public class UserController {
     	} else {
     		User currentUser = userService.findUser(userId);
     		model.addAttribute("user", currentUser);
+    		System.out.println(currentUser.getProfile());
     		if (currentUser.getProfile() != null) {
     			UserProfile currentUserProfile = userProfileService.findUserProfile(currentUser.getProfile().getId());
+    			System.out.println(currentUserProfile);
     			model.addAttribute("profile", currentUserProfile);
     			return "/users/showUserProfile.jsp";
     		} else {
@@ -113,8 +105,45 @@ public class UserController {
     	    } else {
     	    	User currentUser = userService.findUser(userId);
     	    	profile.setUser(currentUser);
-    	    	userProfileService.createUserProfile(profile);
+    	    	UserProfile newProfile = userProfileService.createUserProfile(profile);
+    	    	currentUser.setProfile(newProfile);
     	    	return "redirect:/dashboard";
+    	    }
+    	}
+    }
+    
+    @GetMapping("/users/profile/{id}/edit")
+    public String editProfile(@PathVariable("id") Long id, HttpSession session, Model model) {
+    	Long userId = (Long) session.getAttribute("user_id");
+    	if (userId == null) {
+    	    return "redirect:/";
+    	} else {
+    		User currentUser = userService.findUser(userId);
+    		UserProfile currentUserProfile = userProfileService.findUserProfile(id);
+    		model.addAttribute("user", currentUser);
+    		model.addAttribute("profile", currentUserProfile);
+    		return "/users/editUserProfile.jsp";
+    	}
+    }
+    @PutMapping("/users/profile/{id}/edit")
+    public String updateProfile(@PathVariable("id") Long id, @ModelAttribute("profile") UserProfile profile, HttpSession session, BindingResult result, Model model) {
+    	Long userId = (Long) session.getAttribute("user_id");
+    	if (userId == null) {
+    	    return "redirect:/";
+    	} else {
+    		userProfileService.postNewProfile(profile, result);
+    		if (result.hasErrors()) {
+    	    	return "/users/editUserProfile.jsp";
+    	    } else {
+    	    	UserProfile currentProfile = userProfileService.findUserProfile(id);
+    	    	if (userId.equals(currentProfile.getUser().getId())) {
+    	    		User currentUser = userService.findUser(userId);
+        	    	profile.setUser(currentUser);
+    	    		userProfileService.updateUserProfile(profile);
+    	    		return "redirect:/users/profile";
+    	    	} else {
+    	    		return "redirect:/";    	    		
+    	    	}
     	    }
     	}
     }

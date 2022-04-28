@@ -17,6 +17,7 @@
 	<script type="text/javascript" src="/js/script.js"></script>
 	<script src="/webjars/jquery/jquery.min.js"></script>
 	<script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+	<script src="https://kit.fontawesome.com/c45b326a96.js" crossorigin="anonymous"></script>
 </head>
 	
 <body>
@@ -44,23 +45,17 @@
 		    </ul>
    			<hr>
    			<c:choose>
-   				<c:when test="${!user}">
-				    <div class="btn-group" role="group">
+   				<c:when test="${user == null}">
+				    <div class="btn-group-vertical" role="group">
 						<button type="button" class="btn btn-sm btn-offpumpkin" data-bs-toggle="modal" data-bs-target="#registerModal">Register</button>
 						<button type="button" class="btn btn-sm btn-moss" data-bs-toggle="modal" data-bs-target="#loginModal">Login</button>
 		  			</div>
    				</c:when>
    				<c:otherwise>
-   					<div class="dropdown">
-				    	<a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
-				    	<img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2">
-				    	<strong>mdo</strong>
-				    	</a>
-				    	<ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
-				    		<li><a class="dropdown-item" href="/users/${user.id}/profile">Profile</a></li>
-				    		<li><hr class="dropdown-divider"></li>
-				    		<li><a class="dropdown-item" href="/logout">Sign out</a></li>
-				    	</ul>
+   					<div class="text-center mb-3">Welcome, <c:out value="${user.firstName}" />!</div>
+   					<div class="btn-group-vertical" role="group">
+				    	<button class="btn btn-sm btn-moss" onclick="goProfile()">Profile</button>
+				    	<button class="btn btn-sm btn-danger" onclick="goLogOut()">Sign Out</button>
 				    </div>
    				</c:otherwise>
    			</c:choose>
@@ -68,7 +63,7 @@
 		<div class="container-fluid" style="overflow-y: hidden;">
 			<div class="row mx-auto mt-4" style="width: 90%;">
 				<h1 class="display-4">User Profile:</h1>
-				<form:form action="/users/${user.id}/profile/edit" modelAttribute="profile" method="POST" class="row border border-1 rounded bg-light g-3">
+				<form:form action="/users/profile/${profile.id}/edit" modelAttribute="profile" method="POST" class="row border border-1 rounded bg-light g-3">
 					<input type="hidden" name="_method" value="PUT" />
 					<p class="my-1"> <em> Please note all fields below are optional:</em></p>
 					<!-- <h4>Please note all fields below are optional:</h4> -->
@@ -165,14 +160,12 @@
 	  				</div>
 	  				<hr />
 	  				<div class="mb-3 text-center">
-		  				<input type="submit" value="Update Information" class="col-2 btn btn-sm btn-primary" />  				
+		  				<input type="submit" value="Update" class="col-2 btn btn-sm btn-primary" />  				
 	  				</div>
 	  			</form:form>
 	  		</div>
   		</div>
 	</main>
-	<br />
-	<br />
-	<br />
+
 </body>
 </html>

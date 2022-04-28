@@ -24,27 +24,32 @@ public class UserProfileService {
     public UserProfile postNewProfile(UserProfile profile, BindingResult result) {
     	if (profile.getUserCity() != "") {
     		if (profile.getUserCity().length() < 3 || profile.getUserCity().length() > 128) {
-    			result.rejectValue("city", "Length", "City should be between 3 and 128 characters long.");
+    			result.rejectValue("userCity", "Length", "City should be between 3 and 128 characters long.");
     		}
     	}
     	if (profile.getUserState() != "") {
     		if (profile.getUserState().length() < 2 || profile.getUserState().length() > 12) {
-    			result.rejectValue("state", "Length", "State should be between 2 and 12 characters long.");
+    			result.rejectValue("userState", "Length", "State should be between 2 and 12 characters long.");
+    		}
+    	}
+    	if (profile.getUserZipCode() != "") {
+    		if (profile.getUserZipCode().length() < 5 || profile.getUserZipCode().length() > 10) {
+    			result.rejectValue("userZipCode", "Length", "Zip Code should be between 5 and 10 characters long.");
     		}
     	}
     	if (profile.getUserTwitter() != "") {
     		if (profile.getUserTwitter().length() < 3 || profile.getUserTwitter().length() > 15) {
-    			result.rejectValue("contactTwitter", "Length", "Please enter a valid Twitter handle.");
+    			result.rejectValue("userTwitter", "Length", "Please enter a valid Twitter handle.");
     		}
     	}
     	if (profile.getUserFacebook() != "") {
     		if (profile.getUserFacebook().length() < 5) {
-    			result.rejectValue("contactFacebook", "Length", "Please enter a valid Facebook username.");
+    			result.rejectValue("userFacebook", "Length", "Please enter a valid Facebook username.");
     		}
     	}
     	if (profile.getUserInstagram() != "") {
     		if (profile.getUserInstagram().length() < 3 || profile.getUserInstagram().length() > 30) {
-    			result.rejectValue("contactInstagram", "Length", "Please enter a valid Instagram handle.");
+    			result.rejectValue("userInstagram", "Length", "Please enter a valid Instagram handle.");
     		}
     	}
     	if (result.hasErrors()) {

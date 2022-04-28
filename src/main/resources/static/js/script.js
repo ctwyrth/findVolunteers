@@ -6,3 +6,11 @@
     new bootstrap.Tooltip(tooltipTriggerEl)
   })
 })()
+
+function goProfile() {
+	window.location.replace("/users/profile");
+}
+
+function goLogOut() {
+	window.location.replace("/logout");
+}
