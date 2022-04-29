@@ -162,6 +162,11 @@ main {
 	background-color: #ECECEC;
 }
 
+.bg-tempcolor {
+	--bs-bg-opacity: 1;
+	background-color: #ECECEC;
+}
+
 .text-limiter-dash {
 	white-space: nowrap;
 	width: 300px;
