@@ -68,14 +68,14 @@
 					<div class="card mb-5 p-0" style="max-width: 100%;">
 						<div class="row g-0">
 							<div class="col-md-4">
-								<img src="/img/landscape-volunteers.jpg" class="img-fluid rounded-start" alt="...">
+								<img src="${e.imageURL}" class="img-fluid rounded-start" alt="...">
 							</div>
 							<div class="col-md-8">
 								<div class="card-body">
 									<h2 class="card-title"><c:out value="${e.title}" /></h2>
 									<h6><em><fmt:formatDate pattern="MMMM dd, yyyy" value="${e.start}" /> - <fmt:formatDate pattern="MMMM dd, yyyy" value="${e.end}" /></em></h6>
-									<p class="card-text"><c:out value="${e.description}" /></p>
-									<a href="/events/${e.id}/edit" class="btn btn-sm btn-moss">Edit</a>
+									<p class="card-text text-limiter-events"><c:out value="${e.description}" /></p>
+									<a href="/events/${e.id}" class="btn btn-sm btn-moss">More</a>
 								</div>
 							</div>
 						</div>

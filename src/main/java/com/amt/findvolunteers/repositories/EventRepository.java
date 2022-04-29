@@ -12,4 +12,6 @@ public interface EventRepository extends CrudRepository<Event, Long> {
     // this method retrieves all from the database
     List<Event> findAll();
 
+//    List<Event> findAllByStartAsc();
+    
 }

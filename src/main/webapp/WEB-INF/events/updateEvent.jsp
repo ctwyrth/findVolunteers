@@ -156,7 +156,7 @@
 		  				<div><form:errors path="contactWhatsApp" /></div>
 	  				</div> --%>
 	  				<div class="mb-3 text-center">
-		  				<input type="submit" value="Post Event" class="col-2 btn btn-sm btn-moss" />  				
+		  				<input type="submit" value="Update Event" class="col-2 btn btn-sm btn-moss me-2" /><a href="/dashboard" class="btn btn-sm btn-offpumpkin">Cancel</a>		
 	  				</div>
 	  			</form:form>
 	  		</div>

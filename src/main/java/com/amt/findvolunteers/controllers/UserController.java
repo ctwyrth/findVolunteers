@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import com.amt.findvolunteers.models.LoginUser;
 import com.amt.findvolunteers.models.User;
 import com.amt.findvolunteers.models.UserProfile;
-import com.amt.findvolunteers.services.EventService;
+//import com.amt.findvolunteers.services.EventService;
 import com.amt.findvolunteers.services.UserProfileService;
 import com.amt.findvolunteers.services.UserService;
 
@@ -29,8 +29,8 @@ public class UserController {
     @Autowired
     private UserProfileService userProfileService;
     
-    @Autowired
-    private EventService eventService;
+//    @Autowired
+//    private EventService eventService;
     
     // create new
     @GetMapping("/register")
@@ -80,10 +80,8 @@ public class UserController {
     	} else {
     		User currentUser = userService.findUser(userId);
     		model.addAttribute("user", currentUser);
-    		System.out.println(currentUser.getProfile());
     		if (currentUser.getProfile() != null) {
     			UserProfile currentUserProfile = userProfileService.findUserProfile(currentUser.getProfile().getId());
-    			System.out.println(currentUserProfile);
     			model.addAttribute("profile", currentUserProfile);
     			return "/users/showUserProfile.jsp";
     		} else {

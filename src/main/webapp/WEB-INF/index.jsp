@@ -66,7 +66,7 @@
 				<div class="shadow card bg-dark text-white p-0" style="height: 360px; overflow-y: hidden;">
 					<img src="/img/landscape.jpg" class="img-fluid" alt="..." >
 					<div class="card-img-overlay p-4 mt-5">
-						<h3 class="card-title"><em>Finding Fulfillment...</em></h3>
+						<h3 class="card-title"><em>Finding Fulfillment... through volunteerism!</em></h3>
 						<p class="card-text">Have some extra time on your hands? Looking to give back to your community but can't afford to donate money? Try your hand at volunteering! Local organizations are looking for help doing everything from food service to dog grooming, to home building.</p>
 						<p class="card-text">And you could be the PERFECT fit for the job.</p>
 					</div>

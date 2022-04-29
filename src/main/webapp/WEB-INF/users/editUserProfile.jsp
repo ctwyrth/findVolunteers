@@ -62,8 +62,8 @@
   		</div>
 		<div class="container-fluid" style="overflow-y: hidden;">
 			<div class="row mx-auto mt-4" style="width: 90%;">
-				<h1 class="display-4">User Profile</h1>
-				<form:form action="/users/profile/${profile.id}/edit" modelAttribute="profile" method="POST" class="row border border-1 rounded bg-light g-3">
+				<h1 class="display-4" style="color: #F0A160;"><em>User Profile</em></h1>
+				<form:form action="/users/profile/${profile.id}/edit" modelAttribute="profile" method="POST" class="shadow row rounded bg-light g-3">
 					<input type="hidden" name="_method" value="PUT" />
 					<p class="my-1"> <em> Please note all fields below are optional:</em></p>
 					<!-- <h4>Please note all fields below are optional:</h4> -->

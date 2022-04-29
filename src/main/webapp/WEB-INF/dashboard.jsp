@@ -83,6 +83,9 @@
 						    	<h6><em><fmt:formatDate pattern="MMMM dd, yyyy" value="${e.start}" /> - <fmt:formatDate pattern="MMMM dd, yyyy" value="${e.end}" /></em></h6>
 						    	<p class="card-text text-limiter-dash"><c:out value="${e.description}" /></p>
 						    	<a href="/events/${e.id}/edit" class="btn btn-sm btn-moss text-end">Edit</a>
+						    	<c:if test="${e.getImageURL().isEmpty() || e.getImageURL() == null}">
+						    		<a href="/events/${e.id}/image" class="btn btn-sm btn-moss text-end">Add Image</a>
+						    	</c:if>
 						  	</div>
 						</div>
 					</c:if>
@@ -110,12 +113,12 @@
 		  				<div><form:errors path="description" class="text-danger" style="font-size: .75rem;" /></div>
 	  				</div>
 	  				<div class="col-md-5">
-	  					<form:label path="start" class="form-label"><span class="text-danger">*</span>Start Date/Time:</form:label>
+	  					<form:label path="start" class="form-label"><span class="text-danger">*</span>Start Date:</form:label>
 	  					<form:input type="date" path="start" id="start" class="form-control" />
 		  				<div><form:errors path="start" class="text-danger" style="font-size: .75rem;" /></div>
 	  				</div>
 	  				<div class="col-md-5">
-	  					<form:label path="end" class="form-label"><span class="text-danger">*</span>End Date/Time:</form:label>
+	  					<form:label path="end" class="form-label"><span class="text-danger">*</span>End Date:</form:label>
 	  					<form:input type="date" path="end" id="start" class="form-control" />
 		  				<div><form:errors path="end" class="text-danger" style="font-size: .75rem;" /></div>
 	  				</div>
@@ -137,12 +140,12 @@
 		  				<div><form:errors path="address2" class="text-danger" style="font-size: .75rem;" /></div>
 	  				</div>
 	  				<div class="col-md-6">
-	    				<form:label path="city" class="form-label">City:</form:label>
+	    				<form:label path="city" class="form-label"><span class="text-danger">*</span>City:</form:label>
 	    				<form:input type="text" path="city" class="form-control" id="city" />
 		  				<div><form:errors path="city" class="text-danger" style="font-size: .75rem;" /></div>
 	  				</div>
 	  				<div class="col-md-4">
-	  					<form:label path="state" class="form-label">State:</form:label>
+	  					<form:label path="state" class="form-label"><span class="text-danger">*</span>State:</form:label>
 	  					<form:select class="form-control" path="state" id="state">
 	  						<form:option value="">Select a State...</form:option>
 							<form:option value="AK">Alaska</form:option>

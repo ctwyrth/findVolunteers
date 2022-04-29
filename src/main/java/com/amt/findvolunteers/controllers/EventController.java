@@ -1,5 +1,11 @@
 package com.amt.findvolunteers.controllers;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -8,6 +14,7 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.StringUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,6 +22,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.amt.findvolunteers.models.Event;
 import com.amt.findvolunteers.models.LoginUser;
@@ -38,7 +47,7 @@ public class EventController {
     	if (userId == null) {
     		model.addAttribute("newUser", new User());
     		model.addAttribute("newLogin", new LoginUser());
-    	    return "/events.jsp";
+    	    return "/events/events.jsp";
     	} else {
             User currentUser = userService.findUser(userId);
             List<Event> events = eventService.allEvents();
@@ -46,7 +55,7 @@ public class EventController {
             model.addAttribute("user", currentUser);
             model.addAttribute("newUser", new User());
     		model.addAttribute("newLogin", new LoginUser());
-            return "/events.jsp";
+            return "/events/events.jsp";
         }
     }
 
@@ -77,10 +86,59 @@ public class EventController {
     	    } else {
     	    	User currentUser = userService.findUser(userId);
     	    	newEvent.setPoster(currentUser);
-    	    	eventService.createEvent(newEvent);
-    	    	return "redirect:/dashboard";
+    	    	Event savedEvent = eventService.createEvent(newEvent);
+    	    	model.addAttribute("event", savedEvent);
+    	    	return "/events/imageUpload.jsp";
     	    }
         }
+    }
+    
+    // upload an image
+    @GetMapping("/events/{id}/image")
+    public String adImage(@PathVariable("id") Long id, HttpSession session, Model model) {
+    	Long userId = (Long) session.getAttribute("user_id");
+     	if (userId == null) {
+     	    return "redirect:/";
+     	} else {
+     		Event currentEvent = eventService.findEvent(id);
+     		if (userId.equals(currentEvent.getPoster().getId())) {
+     			model.addAttribute("event", currentEvent);
+     			return "/events/imageUpload.jsp";
+     		} else {
+     			return "redirect:/dashboard";
+     		}
+     	}
+    }
+    @PutMapping("/events/{id}/image")
+    public String upload(@PathVariable("id") Long id, HttpSession session, @RequestParam("imageURL") MultipartFile multipartFile) throws IOException {
+    	Long userId = (Long) session.getAttribute("user_id");
+     	if (userId == null) {
+     	    return "redirect:/";
+     	} else {
+     		Event currentEvent = eventService.findEvent(id);
+     		String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
+	    	if (fileName != null) {
+	    		String imageURL = "/uploads/" + fileName;
+	    	    currentEvent.setImageURL(imageURL);
+	    	    eventService.updateEvent(currentEvent);
+	    	    
+	    	    String uploadDir = "./uploads";
+	    	    Path uploadPath = Paths.get(uploadDir);
+	    	    if (!Files.exists(uploadPath)) {
+	    			Files.createDirectories(uploadPath);
+	    		}
+	    	
+	    	    try (InputStream inputStream = multipartFile.getInputStream()) {
+	    	        // construct file path
+	    	        Path filePath = uploadPath.resolve(fileName);                    
+	    	        Files.copy(inputStream, filePath, StandardCopyOption.REPLACE_EXISTING);
+	    	    } catch (IOException e) {
+	    	        throw new IOException("Could not save uploaded file: "+ fileName);
+	    	    }
+	    	}
+     	}
+     	
+     	return "redirect:/dashboard";
     }
 
     // display one found by id

@@ -68,45 +68,48 @@
 		<div class="container-fluid" style="overflow-x: hidden;">
 			<div class="row mx-auto mt-4" style="width: 90%;">
 				<h1 class="display-4 mb-2 p-0" style="color: #9FC088"><em><c:out value="${event.title}" /></em></h1>
-				<div class="shadow p-4 mb-4 bg-body rounded">
-					<p class="mb-3"><strong class="me-2">Host/Organization:</strong><c:out value="${event.host}" /></p>
-					<p class="mb-3"><strong class="me-2">Description:</strong><c:out value="${event.description}" /></p>
-					<p class="mb-3"><strong class="me-2">Start Date:</strong><fmt:formatDate pattern="MMMM dd, yyyy" value="${event.start}" /></p>
-					<p class="mb-3"><strong class="me-2">End Date:</strong><fmt:formatDate pattern="MMMM dd, yyyy" value="${event.end}" /></p>
-					<hr />
-					<h4>Location:</h4>
-					<div class="mb-3 p-3">
-						<table class="table">
-							<tr>
-								<td colspan=3 style="border-bottom-width: 0;"><strong class="me-2">Address:</strong><c:out value="${event.address}" /></td>
-							</tr>
-							<tr>
-								<td colspan=3 style="border-bottom-width: 0;"><strong class="me-2">Address:</strong><c:out value="${event.address2}" /></td>
-							</tr>
-							<tr>
-								<td style="border-bottom-width: 0;"><strong class="me-2">City:</strong><c:out value="${event.city}" /></td>
-								<td style="border-bottom-width: 0;"><strong class="me-2">State:</strong><c:out value="${event.state}" /></td>
-								<td style="border-bottom-width: 0;"><strong class="me-2">Zip</strong><c:out value="${event.zipCode}" /></td>
-							</tr>
-						</table>
+				<div class="shadow mb-4 p-0 bg-body rounded">
+					<div style="height: 420px; overflow-x: hidden;"><img src="${event.imageURL}" class="card-img-top" alt="..."></div>
+					<div class="p-4">
+						<p class="mb-3"><strong class="me-2">Host/Organization:</strong><c:out value="${event.host}" /></p>
+						<p class="mb-3"><strong class="me-2">Description:</strong><c:out value="${event.description}" /></p>
+						<p class="mb-3"><strong class="me-2">Start Date:</strong><fmt:formatDate pattern="MMMM dd, yyyy" value="${event.start}" /></p>
+						<p class="mb-3"><strong class="me-2">End Date:</strong><fmt:formatDate pattern="MMMM dd, yyyy" value="${event.end}" /></p>
+						<hr />
+						<h4>Location:</h4>
+						<div class="mb-3 p-3">
+							<table class="table">
+								<tr>
+									<td colspan=3 style="border-bottom-width: 0;"><strong class="me-2">Address:</strong><c:out value="${event.address}" /></td>
+								</tr>
+								<tr>
+									<td colspan=3 style="border-bottom-width: 0;"><strong class="me-2">Address:</strong><c:out value="${event.address2}" /></td>
+								</tr>
+								<tr>
+									<td style="border-bottom-width: 0;"><strong class="me-2">City:</strong><c:out value="${event.city}" /></td>
+									<td style="border-bottom-width: 0;"><strong class="me-2">State:</strong><c:out value="${event.state}" /></td>
+									<td style="border-bottom-width: 0;"><strong class="me-2">Zip</strong><c:out value="${event.zipCode}" /></td>
+								</tr>
+							</table>
+						</div>
+						<hr />
+						<h4 class="mb-4">Contact Information:</h4>
+						<p class="ms-4 mb-3">
+							<strong class="me-2">Phone Number:</strong><c:out value="${event.contactPhone}" />
+						</p>
+						<p class="ms-4 mb-3">
+							<strong class="me-2">Email:</strong><c:out value="${event.contactEmail}" />
+						</p>
+						<p class="ms-4 mb-3">
+							<strong class="me-2">Twitter:</strong><c:out value="${event.contactTwitter}" />
+						</p>
+						<p class="ms-4 mb-3">
+							<strong class="me-2">Facebook:</strong><c:out value="${event.contactFacebook}" />
+						</p>
+						<p class="ms-4 mb-3">
+							<strong class="me-2">Instagram:</strong><c:out value="${event.contactInstagram}" />
+						</p>
 					</div>
-					<hr />
-					<h4 class="mb-4">Contact Information:</h4>
-					<p class="ms-4 mb-3">
-						<strong class="me-2">Phone Number:</strong><c:out value="${event.contactPhone}" />
-					</p>
-					<p class="ms-4 mb-3">
-						<strong class="me-2">Email:</strong><c:out value="${event.contactEmail}" />
-					</p>
-					<p class="ms-4 mb-3">
-						<strong class="me-2">Twitter:</strong><c:out value="${event.contactTwitter}" />
-					</p>
-					<p class="ms-4 mb-3">
-						<strong class="me-2">Facebook:</strong><c:out value="${event.contactFacebook}" />
-					</p>
-					<p class="ms-4 mb-3">
-						<strong class="me-2">Instagram:</strong><c:out value="${event.contactInstagram}" />
-					</p>
 				</div>
 				<c:if test="${user.id == event.getPoster().getId()}">
 					<a href="/events/${event.id}/edit" class="col-1 btn btn-sm btn-moss">Edit</a>

@@ -102,7 +102,7 @@ public class MainController {
     		User currentUser = userService.findUser(userId);
     		model.addAttribute("user", currentUser);
     	}
-    	return "events.jsp";
+    	return "/events/events.jsp";
     }
 
 }
