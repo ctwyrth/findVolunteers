@@ -51,28 +51,33 @@ public class EventController {
     }
 
     // create
-    @GetMapping("/events/new")
-    public String newEvent(@ModelAttribute("event") Event event, HttpSession session) {
-        Long userId = (Long) session.getAttribute("user_id");
-    	if (userId == null) {
-    	    return "redirect:/";
-    	} else {
-            return "/events/newEvent.jsp";
-    	}
-    }
+//    @GetMapping("/events/new")
+//    public String newEvent(@ModelAttribute("event") Event event, HttpSession session) {
+//        Long userId = (Long) session.getAttribute("user_id");
+//    	if (userId == null) {
+//    	    return "redirect:/";
+//    	} else {
+//            return "/events/newEvent.jsp";
+//    	}
+//    }
     @PostMapping("/events/new")
-    public String create(@Valid @ModelAttribute("event") Event event, BindingResult result, HttpSession session) {
+    public String create(@Valid @ModelAttribute("newEvent") Event newEvent, BindingResult result, HttpSession session, Model model) {
         Long userId = (Long) session.getAttribute("user_id");
     	if (userId == null) {
     	    return "redirect:/";
     	} else {
-    		eventService.postNew(event, result);
+    		eventService.postNew(newEvent, result);
     	    if (result.hasErrors()) {
-    	    	return "/events/newEvent.jsp";
+    	    	System.out.println(result);
+    	    	User currentUser = userService.findUser(userId);
+        		List<Event> events = eventService.allEvents();
+        		model.addAttribute("user", currentUser);
+        	    model.addAttribute("events", events);
+    	    	return "/dashboard.jsp";
     	    } else {
     	    	User currentUser = userService.findUser(userId);
-    	    	event.setPoster(currentUser);
-    	    	eventService.createEvent(event);
+    	    	newEvent.setPoster(currentUser);
+    	    	eventService.createEvent(newEvent);
     	    	return "redirect:/dashboard";
     	    }
         }
@@ -87,7 +92,7 @@ public class EventController {
     	} else {
             Event eventToShow = eventService.findEvent(id);
             model.addAttribute("event", eventToShow);
-	    return "/events/show.jsp";
+            return "/events/showEvent.jsp";
         }
     }
 

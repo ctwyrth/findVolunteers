@@ -59,34 +59,41 @@
    			</c:choose>
   		</div>
 		<div class="container-fluid p-0" style="overflow-x: hidden;">
-			<div class="row mx-auto mt-4" style="width: 90%;">
+			<div class="row ms-5 mt-4" style="width: 80%;">
+				<div class="row mb-2 p-0">
+					<h1 class="display-4 p-0" style="color: #9FC088;">Welcome back, <c:out value="${user.firstName}" />!</h1>
+					<c:choose>
+						<c:when test="${events == null}">
+							<div class="shadow w-75 p-3">
+								<p>We hope you're finding the site helpful and are able to find new opportunities for service in your area. You can use the form below to add an event to the system if you are aware of a volunteer opportunity in your area that isn't listed on the site. Thanks for your participation!</p>
+								<p><em> - the findVolunteers Staff</em></p>
+							</div>
+						</c:when>
+						<c:otherwise>
+							<h3 class="m-0 p-2">These are your posted events:</h3>
+						</c:otherwise>
+					</c:choose>
+				</div>
 				<c:forEach var="e" items="${events}">
 					<c:if test="${e.getPoster().getId() == user.id}">
-						<div class="card mb-3 p-0" style="max-width: 100%;">
-							<div class="row g-0">
-								<div class="col-md-4">
-									<img src="/img/landscape-volunteers.jpg"
-										class="img-fluid rounded-start" alt="...">
-								</div>
-								<div class="col-md-8">
-									<div class="card-body">
-										<h2 class="card-title"><c:out value="${e.title}" /></h2>
-										<h6><em><fmt:formatDate pattern="MMMM dd, yyyy" value="${e.start}" /> - <fmt:formatDate pattern="MMMM dd, yyyy" value="${e.end}" /></em></h6>
-										<p class="card-text"><c:out value="${e.description}" /></p>
-										<a href="/events/${e.id}/edit" class="btn btn-sm btn-moss">Edit</a>
-									</div>
-								</div>
-							</div>
+						<div class="card mb-3 p-0">
+							<div style="height: 300px; overflow-x: hidden;"><img src="${e.imageURL}" class="card-img-top" alt="..."></div>
+							<div class="card-body">
+						    	<h5 class="card-title"><c:out value="${e.title}" /></h5>
+						    	<h6><em><fmt:formatDate pattern="MMMM dd, yyyy" value="${e.start}" /> - <fmt:formatDate pattern="MMMM dd, yyyy" value="${e.end}" /></em></h6>
+						    	<p class="card-text text-limiter-dash"><c:out value="${e.description}" /></p>
+						    	<a href="/events/${e.id}/edit" class="btn btn-sm btn-moss text-end">Edit</a>
+						  	</div>
 						</div>
 					</c:if>
 				</c:forEach>
 			</div>
 			
-			<div class="row mx-auto mt-4" style="width: 90%;">
-				<h1 class="display-5"> Post an Event:</h1>
-				<form:form action="/events/new" modelAttribute="newEvent" method="post" class="row border border-1 rounded bg-light g-3">
-					<p class="my-1"><span class="text-danger">*</span><em> - indicates a required field</em></p>
+			<div class="row ms-5 mt-4 p-0" style="width: 80%;">
+				<h1 class="display-5 p-0" style="color: #F0A160;"> Post an Event:</h1>
+				<form:form action="/events/new" modelAttribute="newEvent" method="POST" class="row border border-1 rounded bg-light g-3 mx-0 pt-2">
 					<h4>Event:</h4>
+					<p class="my-1"><span class="text-danger">*</span><em> - indicates a required field</em></p>
 					<div class="col-12">
 	    				<form:label path="title" class="form-label"><span class="text-danger">*</span>Title:</form:label>
 	    				<form:input type="text" path="title" class="form-control" id="title" />
@@ -108,7 +115,7 @@
 		  				<div><form:errors path="start" class="text-danger" style="font-size: .75rem;" /></div>
 	  				</div>
 	  				<div class="col-md-5">
-	  					<form:label path="end" class="form-label"><span class="text-danger">*</span>Start Date/Time:</form:label>
+	  					<form:label path="end" class="form-label"><span class="text-danger">*</span>End Date/Time:</form:label>
 	  					<form:input type="date" path="end" id="start" class="form-control" />
 		  				<div><form:errors path="end" class="text-danger" style="font-size: .75rem;" /></div>
 	  				</div>
@@ -135,10 +142,64 @@
 		  				<div><form:errors path="city" class="text-danger" style="font-size: .75rem;" /></div>
 	  				</div>
 	  				<div class="col-md-4">
-	   					<form:label path="state" class="form-label">State:</form:label>
-	    				<form:input type="text" path="state" class="form-control" id="state" />
-					    <div><form:errors path="state" class="text-danger" style="font-size: .75rem;" /></div>
-				    </div>
+	  					<form:label path="state" class="form-label">State:</form:label>
+	  					<form:select class="form-control" path="state" id="state">
+	  						<form:option value="">Select a State...</form:option>
+							<form:option value="AK">Alaska</form:option>
+							<form:option value="AL">Alabama</form:option>
+							<form:option value="AR">Arkansas</form:option>
+							<form:option value="AZ">Arizona</form:option>
+							<form:option value="CA">California</form:option>
+							<form:option value="CO">Colorado</form:option>
+							<form:option value="CT">Connecticut</form:option>
+							<form:option value="DC">District of Columbia</form:option>
+							<form:option value="DE">Delaware</form:option>
+							<form:option value="FL">Florida</form:option>
+							<form:option value="GA">Georgia</form:option>
+							<form:option value="HI">Hawaii</form:option>
+							<form:option value="IA">Iowa</form:option>
+							<form:option value="ID">Idaho</form:option>
+							<form:option value="IL">Illinois</form:option>
+							<form:option value="IN">Indiana</form:option>
+							<form:option value="KS">Kansas</form:option>
+							<form:option value="KY">Kentucky</form:option>
+							<form:option value="LA">Louisiana</form:option>
+							<form:option value="MA">Massachusetts</form:option>
+							<form:option value="MD">Maryland</form:option>
+							<form:option value="ME">Maine</form:option>
+							<form:option value="MI">Michigan</form:option>
+							<form:option value="MN">Minnesota</form:option>
+							<form:option value="MO">Missouri</form:option>
+							<form:option value="MS">Mississippi</form:option>
+							<form:option value="MT">Montana</form:option>
+							<form:option value="NC">North Carolina</form:option>
+							<form:option value="ND">North Dakota</form:option>
+							<form:option value="NE">Nebraska</form:option>
+							<form:option value="NH">New Hampshire</form:option>
+							<form:option value="NJ">New Jersey</form:option>
+							<form:option value="NM">New Mexico</form:option>
+							<form:option value="NV">Nevada</form:option>
+							<form:option value="NY">New York</form:option>
+							<form:option value="OH">Ohio</form:option>
+							<form:option value="OK">Oklahoma</form:option>
+							<form:option value="OR">Oregon</form:option>
+							<form:option value="PA">Pennsylvania</form:option>
+							<form:option value="PR">Puerto Rico</form:option>
+							<form:option value="RI">Rhode Island</form:option>
+							<form:option value="SC">South Carolina</form:option>
+							<form:option value="SD">South Dakota</form:option>
+							<form:option value="TN">Tennessee</form:option>
+							<form:option value="TX">Texas</form:option>
+							<form:option value="UT">Utah</form:option>
+							<form:option value="VA">Virginia</form:option>
+							<form:option value="VT">Vermont</form:option>
+							<form:option value="WA">Washington</form:option>
+							<form:option value="WI">Wisconsin</form:option>
+							<form:option value="WV">West Virginia</form:option>
+							<form:option value="WY">Wyoming</form:option>
+						</form:select>
+		  				<div><form:errors path="state" class="text-danger" style="font-size: .75rem;" /></div>
+	  				</div>
 				    <div class="col-md-2">
 	    				<form:label path="zipCode" class="form-label"><span class="text-danger">*</span>Zip:</form:label>
 	    				<form:input type="text" path="zipCode" class="form-control" id="zipCode" />
@@ -182,6 +243,9 @@
 	  			</form:form>
 	  		</div>
   		</div>
+  		<br />
+  		<br />
+  		<br />
 	</main>
 
 </body>

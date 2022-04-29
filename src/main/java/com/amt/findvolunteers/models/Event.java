@@ -61,7 +61,7 @@ public class Event {
     private Date start;
     
     @NotNull(message="An end date is required.")
-    @Future(message="The start date cannot be in the past.") // Going to need a validation check in submit that this date is after start date
+    @Future(message="The end date cannot be in the past.") // Going to need a validation check in submit that this date is after start date
     @DateTimeFormat(pattern="yyyy-MM-dd")
     private Date end;
     
@@ -76,6 +76,8 @@ public class Event {
     private String contactFacebook;
     
     private String contactInstagram;
+    
+    private String imageURL;
     
 //    @Size(min=16, message="A WhatsApp contact should be no less than 16 charcaters long including spaces.")
 //    private String contactWhatsApp;
@@ -268,5 +270,12 @@ public class Event {
     public void setUpdatedAt(Date updatedAt) {
     	this.updatedAt = updatedAt;
     }
+
+	public String getImageURL() {
+		return imageURL;
+	}
+	public void setImageURL(String imageURL) {
+		this.imageURL = imageURL;
+	}
     
 }

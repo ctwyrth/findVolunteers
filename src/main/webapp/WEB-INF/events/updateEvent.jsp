@@ -87,7 +87,7 @@
 		  				<div><form:errors path="start" class="text-danger" style="font-size: .75rem;" /></div>
 	  				</div>
 	  				<div class="col-md-5">
-	  					<form:label path="end" class="form-label"><span class="text-danger">*</span>Start Date/Time:</form:label>
+	  					<form:label path="end" class="form-label"><span class="text-danger">*</span>End Date/Time:</form:label>
 	  					<form:input type="date" path="end" id="start" class="form-control" />
 		  				<div><form:errors path="end" class="text-danger" style="font-size: .75rem;" /></div>
 	  				</div>
