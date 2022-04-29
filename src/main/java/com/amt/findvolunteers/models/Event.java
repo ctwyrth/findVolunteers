@@ -4,6 +4,7 @@ import java.util.Date;
 //import java.util.List;
 //import java.util.Locale.Category;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -14,6 +15,7 @@ import javax.persistence.JoinColumn;
 //import javax.persistence.JoinTable;
 //import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
@@ -89,13 +91,25 @@ public class Event {
     @Size(min=3, message="An Instagram username should be at least 3 chracters long.")
     private String contactInstagram;
     
+<<<<<<< Updated upstream
     @Size(min=16, message="A WhatsApp contact should be no less than 16 charcaters long including spaces.")
     private String contactWhatsApp;    
     
 
+=======
+//    @Size(min=16, message="A WhatsApp contact should be no less than 16 charcaters long including spaces.")
+//    private String contactWhatsApp;
+    @Column(length=45, nullable=true)
+    private String eventPicString;
+    
+    //	For a one to one relationship
+    @OneToOne(mappedBy="event", cascade=CascadeType.ALL, fetch=FetchType.LAZY)
+    private EventPic Eventpic;
+    
+>>>>>>> Stashed changes
     // For a many to one relationship
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "event_id")
     private User poster;
 
     // For a many to many relationship categories/interests
@@ -247,11 +261,30 @@ public class Event {
     	this.contactInstagram = contactInstagram;
     }
     
+<<<<<<< Updated upstream
     public String getContactWhatsApp() {
     	return contactWhatsApp;
     }
     public void setContactWhatsApp(String contactWhatsApp) {
     	this.contactWhatsApp = contactWhatsApp;
+=======
+//    public String getContactWhatsApp() {
+//    	return contactWhatsApp;
+//    }
+//    public void setContactWhatsApp(String contactWhatsApp) {
+//    	this.contactWhatsApp = contactWhatsApp;
+//    }
+    public void setEventPicString(String eventPicString) {
+    	this.eventPicString = eventPicString;
+    }
+    
+    public EventPic getEventpic() {
+    	return Eventpic;
+    }
+    
+    public void setEventpic(EventPic eventpic) {
+    	Eventpic = eventpic;
+>>>>>>> Stashed changes
     }
     
     public User getPoster() {
@@ -281,5 +314,11 @@ public class Event {
     public void setUpdatedAt(Date updatedAt) {
     	this.updatedAt = updatedAt;
     }
+
+	public String getEventPicString() {
+		return eventPicString;
+	}
+
+    
     
 }

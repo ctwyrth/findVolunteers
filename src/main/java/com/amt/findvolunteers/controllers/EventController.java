@@ -1,6 +1,15 @@
 package com.amt.findvolunteers.controllers;
 
+import java.io.IOException;
 import java.util.List;
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
@@ -15,9 +24,18 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.util.StringUtils;
 
 import com.amt.findvolunteers.models.Event;
+<<<<<<< Updated upstream
+=======
+import com.amt.findvolunteers.models.EventPic;
+import com.amt.findvolunteers.models.LoginUser;
+>>>>>>> Stashed changes
 import com.amt.findvolunteers.models.User;
+import com.amt.findvolunteers.services.EventPicService;
 import com.amt.findvolunteers.services.EventService;
 import com.amt.findvolunteers.services.UserService;
 
@@ -29,6 +47,9 @@ public class EventController {
     
     @Autowired
     private UserService userService;
+    
+    @Autowired
+    private EventPicService eventPicService;
 
     // show all
     @GetMapping("/events") // home or dashboard
@@ -47,7 +68,8 @@ public class EventController {
 
     // create
     @GetMapping("/events/new")
-    public String newEvent(@ModelAttribute("event") Event event, HttpSession session) {
+    public String newEvent(@ModelAttribute("event") Event event, 
+    		HttpSession session) {
         Long userId = (Long) session.getAttribute("user_id");
     	if (userId == null) {
     	    return "redirect:/";
@@ -55,8 +77,11 @@ public class EventController {
             return "/events/newEvent.jsp";
     	}
     }
+    //    create with image save
     @PostMapping("/events/new")
-    public String create(@Valid @ModelAttribute("event") Event event, BindingResult result, HttpSession session) {
+    public String create(@Valid @ModelAttribute("event") Event event, BindingResult result, 
+    		HttpSession session, 
+    		@RequestParam("fileImage") MultipartFile multipartFile) throws IOException {
         Long userId = (Long) session.getAttribute("user_id");
     	if (userId == null) {
     	    return "redirect:/";
@@ -64,10 +89,47 @@ public class EventController {
     	    if (result.hasErrors()) {
     	    	return "/events/newEvent.jsp";
     	    } else {
+    	    	String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
+    	    	if (fileName != null) {
+    	    		EventPic eventPic = new EventPic();
+    	    		eventPic.setPic(fileName);
+    	    		EventPic savedEventPic = eventPicService.createEventPic(eventPic);
+// ??? NEED TO DOUBLE CHECK HOW TO ADDRESS FOLDER   	    		
+    	    		String uploadDir = "./upload/" + savedEventPic.getId();
+    	    		
+    	    		Path uploadPath = Paths.get(uploadDir);
+    	    		
+    	    		if (!Files.exists(uploadPath)) {
+    	    			Files.createDirectories(uploadPath);
+    	    		}
+    	    		
+//   regarding multipart form
+    	    		try (InputStream inputStream = multipartFile.getInputStream()) {
+    	    			//    	construct file path
+    	    			Path filePath = uploadPath.resolve(fileName);
+    	    			
+    	    			Files.copy(inputStream, filePath, StandardCopyOption.REPLACE_EXISTING);
+    	    		} catch (IOException e) {
+    	    			throw new IOException("Could not save uploaded file: "+ fileName);
+    	    		}
     	    	User currentUser = userService.findUser(userId);
     	    	event.setPoster(currentUser);
     	    	eventService.createEvent(event);
+<<<<<<< Updated upstream
     	    	return "redirect:/events";
+=======
+//    	    	event picture save
+    	    	savedEventPic.setEvent(event);
+    	    	eventPicService.updateEventPic(savedEventPic);
+    	    	return "redirect:/dashboard";
+//    	    	if no event pic
+    	    	}else {
+    	    	  	User currentUser = userService.findUser(userId);
+        	    	event.setPoster(currentUser);
+        	    	eventService.createEvent(event);
+        	    	return "redirect:/dashboard";
+    	    	}
+>>>>>>> Stashed changes
     	    }
         }
     }
@@ -81,6 +143,7 @@ public class EventController {
     	} else {
             Event eventToShow = eventService.findEvent(id);
             model.addAttribute("event", eventToShow);
+//            ***needs to be updated
 	    return "/events/show.jsp";
         }
     }

@@ -17,6 +17,12 @@
 	<!-- <script type="text/javascript" src="/js/script.js"></script> -->
 	<script src="/webjars/jquery/jquery.min.js"></script>
 	<script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+<<<<<<< Updated upstream
+=======
+	<script type="text/javascript" src="/js/script.js"></script>
+	<script type="text/javascript" src="/js/imgscript.js"></script>
+	<script src="https://kit.fontawesome.com/c45b326a96.js" crossorigin="anonymous"></script>
+>>>>>>> Stashed changes
 </head>
 
 <body>
@@ -24,7 +30,7 @@
 		<div class="container mx-auto mt-4">
 			<div class="row mx-auto" style="width: 85%;">
 				<h1 class="display-4"> Post an Event:</h1>
-				<form:form action="/events/new" modelAttribute="event" method="post" class="row border border-1 rounded bg-light g-3">
+				<form:form action="/events/new" modelAttribute="event" method="post" class="row border border-1 rounded bg-light g-3" enctype="multipart/form-data">
 					<p class="my-1"><span class="text-danger">*</span><em> - indicates a required field</em></p>
 					<h4>Event:</h4>
 					<div class="col-12">
@@ -84,6 +90,7 @@
 	    				<form:input type="text" path="zipCode" class="form-control" id="zipCode" />
 		  				<div><form:errors path="zipCode" /></div>
 	  				</div>
+	
 	  				<hr />
 	  				<h4>Contact Info:</h4>
 	  				<div class="col-md-4">
@@ -115,7 +122,18 @@
 	  					<form:label path="contactWhatsApp" class="form-label">WhatsApp:</form:label>
 	  					<form:input type="text" path="contactWhatsApp" class="form-control" />
 		  				<div><form:errors path="contactWhatsApp" /></div>
+<<<<<<< Updated upstream
 	  				</div>
+=======
+	  				</div> --%>
+	  				 <div class="col-md-2">
+          	 			<label for="eventPic">Upload an a flyer or picture for the event:</label>
+           				<input type="file" name="fileImage" id="fileImage" accept="image/png, image/jpeg, image/jpg" />
+           					<div>
+           					<img id="thumbnail" src="/img/blank.png" style="width:50px;" alt="event pic preview" />
+           					</div>
+          			</div>
+>>>>>>> Stashed changes
 	  				<div class="mb-3 text-center">
 		  				<input type="submit" value="Post Event" class="col-2 btn btn-sm btn-primary" />  				
 	  				</div>
