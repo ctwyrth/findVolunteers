@@ -83,10 +83,10 @@
 				<c:forEach var="e" items="${events}">
 					<div class="col-sm-4">
 						<div class="card px-0 mb-5">
-						  <img src="/img/landscape-soup-kitchen.jpg" class="card-img-top" alt="volunteers packing food into boxes">
+						  <img src="${e.imageURL}" class="card-img-top" alt="volunteers packing food into boxes">
 						  <div class="card-body">
-						    <h5 class="card-title"><c:out value="${e.title}" /></h5>
-						    <p class="card-text"><c:out value="${e.description}" /></p>
+						    <h5 class="card-title text-limiter-index"><c:out value="${e.title}" /></h5>
+						    <p class="card-text text-limiter-index"><c:out value="${e.description}" /></p>
 						    <a href="/events/${e.id}" class="btn btn-primary">More</a>
 						  </div>
 						</div>
