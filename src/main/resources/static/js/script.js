@@ -14,3 +14,11 @@ function goProfile() {
 function goLogOut() {
 	window.location.replace("/logout");
 }
+
+$(document).ready(function() {
+
+  if(window.location.href.indexOf('#loginModal') != -1) {
+    $('#loginModal').modal('show');
+  }
+
+});

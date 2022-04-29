@@ -14,10 +14,10 @@
 	<link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css" />
 	<link rel="stylesheet" type="text/css" href="/css/style.css">
 	
-	<script type="text/javascript" src="/js/script.js"></script>
 	<script src="/webjars/jquery/jquery.min.js"></script>
 	<script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
 	<script src="https://kit.fontawesome.com/c45b326a96.js" crossorigin="anonymous"></script>
+	<script type="text/javascript" src="/js/script.js"></script>
 </head>
 
 <body>
@@ -27,7 +27,7 @@
 		    <hr>
 		    <ul class="nav nav-pills flex-column mb-auto">
 		    	<li class="nav-item">
-		        	<a href="#" class="nav-link active" aria-current="page"><i class="fa-solid fa-house me-2"></i>Home</a>
+		        	<a href="/" class="nav-link active" aria-current="page"><i class="fa-solid fa-house me-2"></i>Home</a>
 		    	</li>
 		    	<c:if test="${user != null}">
 		    		<li>
@@ -63,7 +63,7 @@
  <!-- main body of page ---------------------------------------------------------------------- -->
 		<div style="overflow-x: hidden;">
 			<div class="row mx-auto mt-4" style="width: 90%;">
-				<div class="card bg-dark text-white p-0" style="height: 360px; overflow-y: hidden;">
+				<div class="shadow card bg-dark text-white p-0" style="height: 360px; overflow-y: hidden;">
 					<img src="/img/landscape.jpg" class="img-fluid" alt="..." >
 					<div class="card-img-overlay p-4 mt-5">
 						<h3 class="card-title"><em>Finding Fulfillment...</em></h3>
@@ -71,13 +71,15 @@
 						<p class="card-text">And you could be the PERFECT fit for the job.</p>
 					</div>
 				</div>
-				<div class="mt-4">
-					<form class="d-flex search mx-auto" style="max-width: 65%;">
-						<input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-						<button class="btn btn-outline-dark" type="submit">Search</button>
-					</form>
+			</div>
+			<div class="my-5 mx-auto text-center" style="width: 80%;">
+				<div class="shadow card bg-lightbrown">
+					<div class="card-body">
+						<h5 class="card-title">Know about a volunteer opportunity?</h5>
+    					<p class="card-text">You can post events in your community by registering with the site.</p>
+    					<button type="button" class="btn btn-sm btn-offpumpkin" data-bs-toggle="modal" data-bs-target="#registerModal">Register</button>
+  					</div>
 				</div>
-				<p></p>
 			</div>
 			<div class="row mx-auto p-0" style="width: 90%">
 				<c:forEach var="e" items="${events}">
@@ -87,7 +89,7 @@
 						  <div class="card-body">
 						    <h5 class="card-title text-limiter-index"><c:out value="${e.title}" /></h5>
 						    <p class="card-text text-limiter-index"><c:out value="${e.description}" /></p>
-						    <a href="/events/${e.id}" class="btn btn-primary">More</a>
+						    <a href="/events/${e.id}" class="btn btn-sm btn-moss">More</a>
 						  </div>
 						</div>
 					</div>
@@ -105,7 +107,7 @@
    				</div>
    				<form:form action="/login" modelAttribute="newLogin" method="POST" class="p-3">
 					<div class="form-floating mb-3">
-						<form:input type="email" path="email" class="form-control" placeholder="Email" />
+						<form:input type="text" path="email" class="form-control" placeholder="Email" />
 						<form:label path="email" class="form-label">Email</form:label>							
 					</div>
 					<div class="mb-3 text-danger"><form:errors path="email" /></div>
@@ -138,7 +140,7 @@
 					</div>
 					<div><form:errors path="lastName" /></div>
 					<div class="form-floating mb-3">
-						<form:input type="email" path="email" class="form-control" placeholder="Email" />
+						<form:input type="text" path="email" class="form-control" placeholder="Email" />
 						<form:label path="email" class="form-label">Email</form:label>							
 					</div>
 					<div class="mb-3 text-danger"><form:errors path="email" /></div>

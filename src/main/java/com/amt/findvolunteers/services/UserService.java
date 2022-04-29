@@ -2,6 +2,7 @@ package com.amt.findvolunteers.services;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.regex.Pattern;
 
 import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +26,16 @@ public class UserService {
 
     // creates one -- register
     public User register(User newU, BindingResult result) {
+    	if (newU.getEmail() != "") {
+    		String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\."+
+                    "[a-zA-Z0-9_+&*-]+)*@" +
+                    "(?:[a-zA-Z0-9-]+\\.)+[a-z" +
+                    "A-Z]{2,7}$";          
+    		Pattern pat = Pattern.compile(emailRegex);
+    		if (!pat.matcher(newU.getEmail()).matches()) {
+    			result.rejectValue("email", "Pattern", "Please enter a valid email.");
+    		}
+    	}
     	Optional<User> potentialUser = userRepository.findByEmail(newU.getEmail());
     	// check for email in db
     	if (potentialUser.isPresent()) {
@@ -45,26 +56,35 @@ public class UserService {
     
     // login
     public User login(LoginUser loginUser, BindingResult result) {
-    	Optional<User> potentialUser = userRepository.findByEmail(loginUser.getEmail());
-    	// check if user exists in db through email
-    	if (!potentialUser.isPresent()) {
-    		result.rejectValue("email", "Exists", "Please try a different email.");
-    	} else {
-    		// grab the user with the provided email
-    		User userForLoginCheck = potentialUser.get();
-    		
-    		// check if passwords match
-    		if(!BCrypt.checkpw(loginUser.getPassword(), userForLoginCheck.getPassword())) {
-    			result.rejectValue("password", "Matches", "Invalid Password!");
-    		}
-    		
-    		if (result.hasErrors()) {
-    			return null;
+    	if (loginUser.getEmail() != "") {
+    		String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\."+
+                    "[a-zA-Z0-9_+&*-]+)*@" +
+                    "(?:[a-zA-Z0-9-]+\\.)+[a-z" +
+                    "A-Z]{2,7}$";          
+    		Pattern pat = Pattern.compile(emailRegex);
+    		if (!pat.matcher(loginUser.getEmail()).matches()) {
+    			result.rejectValue("email", "Pattern", "Please enter a valid email.");
     		} else {
-    			return userForLoginCheck;
+    			Optional<User> potentialUser = userRepository.findByEmail(loginUser.getEmail());
+    			// check if user exists in db through email
+    			if (!potentialUser.isPresent()) {
+    				result.rejectValue("email", "Exists", "Please try a different email.");
+    			} else {
+    				// grab the user with the provided email
+    				User userForLoginCheck = potentialUser.get();
+    				
+    				// check if passwords match
+    				if(!BCrypt.checkpw(loginUser.getPassword(), userForLoginCheck.getPassword())) {
+    					result.rejectValue("password", "Matches", "Invalid Password!");
+    				} else {
+    					return userForLoginCheck;
+    				}
+    				
+    			}
+    			
     		}
     	}
-    	return null;
+   		return null;
     }
 
     // retrieves one by id

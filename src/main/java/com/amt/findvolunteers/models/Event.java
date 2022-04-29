@@ -1,7 +1,8 @@
 package com.amt.findvolunteers.models;
 
 import java.util.Date;
-import java.util.List;
+//import java.util.List;
+//import java.util.Locale.Category;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,16 +11,16 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
+//import javax.persistence.JoinTable;
+//import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
-//import javax.validation.constraints.Email;
 import javax.validation.constraints.Future;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.PositiveOrZero;
 import javax.validation.constraints.Size;
 
 import org.springframework.format.annotation.DateTimeFormat;
@@ -40,45 +41,56 @@ public class Event {
     @Size(min=3, max=128, message="Host should be 3 to 128 charcaters long.")
     private String host;
     
+    @Size(min=10, max=128, message="Address should be 10 to 128 charcaters long.")
     private String address;
     
+    @Size(min=5, max=50, message="Address should be 5 to 50 charcaters long.")
     private String address2;
 
+    @Size(min=3, max=128, message="City should be 3 to 128 charcaters long.")
     private String city;
     
-    private String state;
+    @Size(min=2, max=12, message="State should be 2 to 12 charcaters long.")
+    private String State;
     
     @NotNull(message="Zip Code is a required field.")
     @Size(min=5, max=10, message="Zip Code should be 5 to 10 charaters long.")
     private String zipCode;
     
-    @NotBlank(message="This is a required field.")
+    @NotBlank()
     private String description;
     
     @NotNull(message="A start date is required.")
     @Future(message="The start date cannot be in the past.")
-    @DateTimeFormat(pattern="yyyy-MM-dd")
+    @DateTimeFormat(pattern="yyyy-MM-dd hh:mm a")
     private Date start;
     
     @NotNull(message="An end date is required.")
-    @Future(message="The end date cannot be in the past.") // Going to need a validation check in submit that this date is after start date
-    @DateTimeFormat(pattern="yyyy-MM-dd")
+    @Future(message="The start date cannot be in the past.") // Going to need a validation check in submit that this date is after start date
+    @DateTimeFormat(pattern="yyyy-MM-dd hh:mm a")
     private Date end;
     
+    @PositiveOrZero(message="Volunteers needed can not be negative.")
     private Integer needed;
     
+    @Size(min=10, max=14, message="Phone number should be 10 to 14 characters long.")
     private String contactPhone;
     
     private String contactEmail;
     
+    @Size(min=3, max=15, message="A Twitter handle is between 3 and 15 characters long, do not include the @ symbol.")
     private String contactTwitter;
     
+    @Size(min=5, message="A Facebook username should be at least 5 characters long.")
     private String contactFacebook;
     
+    @Size(min=3, message="An Instagram username should be at least 3 chracters long.")
     private String contactInstagram;
     
-    private String imageURL;
+//    @Size(min=16, message="A WhatsApp contact should be no less than 16 charcaters long including spaces.")
+//    private String contactWhatsApp;    
     
+
 //    @Size(min=16, message="A WhatsApp contact should be no less than 16 charcaters long including spaces.")
 //    private String contactWhatsApp;
 
@@ -88,13 +100,15 @@ public class Event {
     private User poster;
 
     // For a many to many relationship categories/interests
-    @ManyToMany
-    @JoinTable(
-        name = "eventCategories",
-        joinColumns = @JoinColumn(name = "event_id"),
-        inverseJoinColumns = @JoinColumn(name = "category_id")
-    )
-    private List<Category> categories;
+//    @ManyToMany
+//    @JoinTable(
+//        name = "eventCategories",
+//        joinColumns = @JoinColumn(name = "event_id"),
+//        inverseJoinColumns = @JoinColumn(name = "category_id")
+//    )
+//    private List<Category> categories;
+    
+    private String imageURL;
 
     @Column(updatable=false)
     @DateTimeFormat(pattern="yyyy-MM-dd hh:mm:ss a")
@@ -160,10 +174,10 @@ public class Event {
     }
     
     public String getState() {
-    	return state;
+    	return State;
     }
     public void setState(String state) {
-    	this.state = state;
+    	State = state;
     }
     
     public String getZipCode() {
@@ -235,7 +249,7 @@ public class Event {
     public void setContactInstagram(String contactInstagram) {
     	this.contactInstagram = contactInstagram;
     }
-    
+
 //    public String getContactWhatsApp() {
 //    	return contactWhatsApp;
 //    }
@@ -250,17 +264,25 @@ public class Event {
 		this.poster = poster;
 	}
 
-	public List<Category> getCategories() {
-    	return categories;
-    }
-    public void setCategories(List<Category> categories) {
-    	this.categories = categories;
-    }
+//	public List<Category> getCategories() {
+//    	return categories;
+//    }
+//    public void setCategories(List<Category> categories) {
+//    	this.categories = categories;
+//    }
     
+	public String getImageURL() {
+		return imageURL;
+	}
+	public void setImageURL(String imageURL) {
+		this.imageURL = imageURL;
+	}
+	
     public Date getCreatedAt() {
     	return createdAt;
     }
-    public void setCreatedAt(Date createdAt) {
+
+	public void setCreatedAt(Date createdAt) {
     	this.createdAt = createdAt;
     }
     
@@ -269,13 +291,6 @@ public class Event {
     }
     public void setUpdatedAt(Date updatedAt) {
     	this.updatedAt = updatedAt;
-    }
-
-	public String getImageURL() {
-		return imageURL;
-	}
-	public void setImageURL(String imageURL) {
-		this.imageURL = imageURL;
-	}
+    }    
     
 }

@@ -7,18 +7,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-//import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
-//import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-//import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 
 import com.amt.findvolunteers.models.LoginUser;
 import com.amt.findvolunteers.models.User;
 import com.amt.findvolunteers.models.UserProfile;
+import com.amt.findvolunteers.services.EventService;
 import com.amt.findvolunteers.services.UserProfileService;
 import com.amt.findvolunteers.services.UserService;
 
@@ -30,6 +28,9 @@ public class UserController {
     
     @Autowired
     private UserProfileService userProfileService;
+    
+    @Autowired
+    private EventService eventService;
     
     // create new
     @GetMapping("/register")
@@ -43,7 +44,6 @@ public class UserController {
     	// do validation checks on email and password
     	userService.register(newUser, result);
     	if (result.hasErrors()) {
-    		model.addAttribute("newLogin", new LoginUser());
     		return "/users/register.jsp";
     	} else {
     		session.setAttribute("user_id", newUser.getId());
@@ -56,8 +56,7 @@ public class UserController {
     public String login(@Valid @ModelAttribute("newLogin") LoginUser newLogin, BindingResult result, Model model, HttpSession session) {
     	User user = userService.login(newLogin, result);
     	if (result.hasErrors()) {
-    		model.addAttribute("newUser", new User());
-    		return "/users/index.jsp";
+    		return "/users/login.jsp"; // #loginModal
     	} else {
     		session.setAttribute("user_id", user.getId());
     		return "redirect:/dashboard";

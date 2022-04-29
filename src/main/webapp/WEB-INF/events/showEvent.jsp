@@ -8,28 +8,23 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
+	<meta charset="UTF-8">
 
-<title>findVolunteers - Update Profile</title>
+	<title>findVolunteers - Update Profile</title>
 
-<link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css" />
-<link rel="stylesheet" type="text/css" href="/css/style.css">
+	<link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css" />
+	<link rel="stylesheet" type="text/css" href="/css/style.css">
 
-<script type="text/javascript" src="/js/script.js"></script>
-<script src="/webjars/jquery/jquery.min.js"></script>
-<script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
-<script src="https://kit.fontawesome.com/c45b326a96.js"
-	crossorigin="anonymous"></script>
+	<script src="/webjars/jquery/jquery.min.js"></script>
+	<script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+	<script src="https://kit.fontawesome.com/c45b326a96.js" crossorigin="anonymous"></script>
+	<script type="text/javascript" src="/js/script.js"></script>
 </head>
 
 <body>
 	<main>
-		<div
-			class="d-flex flex-column flex-shrink-0 p-4 text-white bg-pumpkin"
-			style="width: 220px;">
-			<a href="/"
-				class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none"><span
-				class="fs-4">findVolunteers</span></a>
+		<div class="d-flex flex-column flex-shrink-0 p-4 text-white bg-pumpkin" style="width: 220px;">
+			<a href="/"	class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none"><span class="fs-4">findVolunteers</span></a>
 			<hr>
 			<ul class="nav nav-pills flex-column mb-auto">
 				<li class="nav-item"><a href="/" class="nav-link text-white"
@@ -43,7 +38,7 @@
 						class="fa-solid fa-circle-user me-2"></i>About</a></li>
 				<li><a href="/contact" class="nav-link text-white"><i
 						class="fa-solid fa-envelope me-2"></i>Contact</a></li>
-				<li><a href="/allEvents" class="nav-link active"><i
+				<li><a href="/allEvents" class="nav-link text-white"><i
 						class="fa-solid fa-calendar me-2"></i>Events</a></li>
 			</ul>
 			<hr>
@@ -70,54 +65,56 @@
 				</c:otherwise>
 			</c:choose>
 		</div>
-		<div class="container-fluid" style="overflow-y: hidden;">
+		<div class="container-fluid" style="overflow-x: hidden;">
 			<div class="row mx-auto mt-4" style="width: 90%;">
-				<div class="shadow p-3 mb-5 bg-body rounded">
-					<h1>Event</h1>
-					<p>
-						<strong class="">title</strong>
-						<c:out value="${event.title}" />
-					</p>
-					<p>
-						<strong>Host/Organization</strong>
-						<c:out value="${event.host}" />
-					</p>
-					<p>
-						<strong>Description </strong>
-						<c:out value="${event.description}" />
-					</p>
-					<p class="mb-3">
-						<strong>Start Date/Time </strong>
-						<c:out value="${event.start}" />
-					</p>
-					<p class="mb-3">
-						<strong>End Date/Time </strong>
-						<c:out value="${event.end}" />
-					</p>
+				<h1 class="display-4 mb-2 p-0" style="color: #9FC088"><em><c:out value="${event.title}" /></em></h1>
+				<div class="shadow p-4 mb-4 bg-body rounded">
+					<p class="mb-3"><strong class="me-2">Host/Organization:</strong><c:out value="${event.host}" /></p>
+					<p class="mb-3"><strong class="me-2">Description:</strong><c:out value="${event.description}" /></p>
+					<p class="mb-3"><strong class="me-2">Start Date:</strong><fmt:formatDate pattern="MMMM dd, yyyy" value="${event.start}" /></p>
+					<p class="mb-3"><strong class="me-2">End Date:</strong><fmt:formatDate pattern="MMMM dd, yyyy" value="${event.end}" /></p>
 					<hr />
-						<h1>Location:</h1>
-					<p class="mb-3">
-						<strong>Address</strong>
-						<c:out value="${event.address}" />
+					<h4>Location:</h4>
+					<div class="mb-3 p-3">
+						<table class="table">
+							<tr>
+								<td colspan=3 style="border-bottom-width: 0;"><strong class="me-2">Address:</strong><c:out value="${event.address}" /></td>
+							</tr>
+							<tr>
+								<td colspan=3 style="border-bottom-width: 0;"><strong class="me-2">Address:</strong><c:out value="${event.address2}" /></td>
+							</tr>
+							<tr>
+								<td style="border-bottom-width: 0;"><strong class="me-2">City:</strong><c:out value="${event.city}" /></td>
+								<td style="border-bottom-width: 0;"><strong class="me-2">State:</strong><c:out value="${event.state}" /></td>
+								<td style="border-bottom-width: 0;"><strong class="me-2">Zip</strong><c:out value="${event.zipCode}" /></td>
+							</tr>
+						</table>
+					</div>
+					<hr />
+					<h4 class="mb-4">Contact Information:</h4>
+					<p class="ms-4 mb-3">
+						<strong class="me-2">Phone Number:</strong><c:out value="${event.contactPhone}" />
 					</p>
-					<p class="mb-3">
-						<strong>Address 2</strong>
-						<c:out value="${event.address2}" />
+					<p class="ms-4 mb-3">
+						<strong class="me-2">Email:</strong><c:out value="${event.contactEmail}" />
 					</p>
-					<p class="mb-3">
-						<strong>City</strong>
-						<c:out value="${event.city}" />
+					<p class="ms-4 mb-3">
+						<strong class="me-2">Twitter:</strong><c:out value="${event.contactTwitter}" />
 					</p>
-					<p class="mb-3">
-						<strong>State</strong>
-						<c:out value="${event.state}" />
+					<p class="ms-4 mb-3">
+						<strong class="me-2">Facebook:</strong><c:out value="${event.contactFacebook}" />
 					</p>
-					<p class="mb-3">
-						<strong>Zip</strong>
-						<c:out value="${event.zipCode}" />
+					<p class="ms-4 mb-3">
+						<strong class="me-2">Instagram:</strong><c:out value="${event.contactInstagram}" />
 					</p>
 				</div>
+				<c:if test="${user.id == event.getPoster().getId()}">
+					<a href="/events/${event.id}/edit" class="col-1 btn btn-sm btn-moss">Edit</a>
+				</c:if>
 			</div>
+			<br />
+			<br />
+			<br />
 		</div>
 	</main>
 </body>

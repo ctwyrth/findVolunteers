@@ -109,6 +109,11 @@ main {
 	background-color: #CC704B;
 }
 
+.bg-lightbrown {
+	--bs-bg-opacity: 1;
+	background-color: #E8C07D;
+}
+
 .btn-pumpkin {
 	color: #fff;
 	background-color: #CC704B;

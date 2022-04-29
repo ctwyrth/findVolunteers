@@ -68,7 +68,7 @@ public class EventController {
     	} else {
     		eventService.postNew(newEvent, result);
     	    if (result.hasErrors()) {
-    	    	System.out.println(result);
+//    	    	System.out.println(result);
     	    	User currentUser = userService.findUser(userId);
         		List<Event> events = eventService.allEvents();
         		model.addAttribute("user", currentUser);
@@ -87,11 +87,16 @@ public class EventController {
     @GetMapping("/events/{id}")
     public String showOneeventById(@PathVariable("id") Long id, HttpSession session, Model model) {
         Long userId = (Long) session.getAttribute("user_id");
+        Event eventToShow = eventService.findEvent(id);
+        model.addAttribute("event", eventToShow);
     	if (userId == null) {
-    	    return "redirect:/";
+    		System.out.println("no user");
+    	    return "/events/showEvent.jsp;";
     	} else {
-            Event eventToShow = eventService.findEvent(id);
-            model.addAttribute("event", eventToShow);
+    		System.out.println("with user");
+    		User currentUser = userService.findUser(userId);
+    		model.addAttribute("user", currentUser);
+    		System.out.println(eventToShow);
             return "/events/showEvent.jsp";
         }
     }
@@ -106,7 +111,7 @@ public class EventController {
     	    Event eventToShow = eventService.findEvent(id);
             if (userId.equals(eventToShow.getPoster().getId())) {
             	model.addAttribute("event", eventToShow);
-            	return "/events/edit.jsp";
+            	return "/events/updateEvent.jsp";
             } else {
             	return "redirect:/events";
             }

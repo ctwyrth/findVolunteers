@@ -62,18 +62,8 @@
 		<div class="container-fluid" style="overflow-x: hidden;">
 			<div class="row mx-auto mt-4" style="width: 90%;">
 				<div class="col-8 mx-auto">
-					<h4>Register:</h4>
-					<form:form action="/register" modelAttribute="newUser" method="POST" class="shadow p-3">
-						<div class="form-floating mb-3">
-							<form:input type="text" path="firstName" class="form-control" placeholder="First Name" />
-							<form:label path="firstName" class="form-label">First Name</form:label>							
-						</div>
-						<div class="mb-3 text-danger"><form:errors path="firstName" /></div>
-						<div class="form-floating mb-3">
-							<form:input type="text" path="lastName" class="form-control" placeholder="Last Name" />
-							<form:label path="lastName" class="form-label">Last Name</form:label>							
-						</div>
-						<div class="mb-3 text-danger"><form:errors path="lastName" /></div>
+					<h4>Login:</h4>
+					<form:form action="/login" modelAttribute="newLogin" method="POST" class="shadow p-3">
 						<div class="form-floating mb-3">
 							<form:input type="email" path="email" class="form-control" placeholder="Email" />
 							<form:label path="email" class="form-label">Email</form:label>							
@@ -84,12 +74,7 @@
 							<form:label path="password" class="form-label">Password</form:label>							
 						</div>
 						<div class="mb-3 text-danger"><form:errors path="password" /></div>
-						<div class="form-floating mb-3">
-							<form:input type="password" path="confirm" class="form-control" placeholder="Confirm Password" />
-							<form:label path="confirm" class="form-label">Confirm Password</form:label>							
-						</div>
-						<div class="mb-3 text-danger"><form:errors path="confirm" /></div>
-						<input type="submit" value="Create" class="btn btn-sm btn-success" />
+						<input type="submit" value="Log In" class="btn btn-sm btn-success" />
 					</form:form>
 				</div>
 			</div>

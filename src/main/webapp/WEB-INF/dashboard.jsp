@@ -59,18 +59,18 @@
    			</c:choose>
   		</div>
 		<div class="container-fluid p-0" style="overflow-x: hidden;">
-			<div class="row ms-5 mt-4" style="width: 80%;">
-				<div class="row mb-2 p-0">
-					<h1 class="display-4 p-0" style="color: #9FC088;">Welcome back, <c:out value="${user.firstName}" />!</h1>
+			<div class="row mx-auto mt-4" style="width: 80%;">
+				<div class="row ms-1 mb-2 p-0">
+					<h1 class="display-4 p-0" style="color: #9FC088;"><em>Welcome back, <c:out value="${user.firstName}" />!</em></h1>
 					<c:choose>
-						<c:when test="${events == null}">
-							<div class="shadow w-75 p-3">
+						<c:when test="${user.getEvents().isEmpty()}">
+							<div class="shadow py-3 px-4 mb-0">
 								<p>We hope you're finding the site helpful and are able to find new opportunities for service in your area. You can use the form below to add an event to the system if you are aware of a volunteer opportunity in your area that isn't listed on the site. Thanks for your participation!</p>
-								<p><em> - the findVolunteers Staff</em></p>
+								<p class="mb-0"><em> - the findVolunteers Staff</em></p>
 							</div>
 						</c:when>
 						<c:otherwise>
-							<h3 class="m-0 p-2">These are your posted events:</h3>
+							<h5 class="m-0 p-2">These are your posted events:</h5>
 						</c:otherwise>
 					</c:choose>
 				</div>
@@ -89,9 +89,9 @@
 				</c:forEach>
 			</div>
 			
-			<div class="row ms-5 mt-4 p-0" style="width: 80%;">
-				<h1 class="display-5 p-0" style="color: #F0A160;"> Post an Event:</h1>
-				<form:form action="/events/new" modelAttribute="newEvent" method="POST" class="row border border-1 rounded bg-light g-3 mx-0 pt-2">
+			<div class="row mx-auto mt-4 p-0" style="width: 80%;">
+				<h1 class="display-5 p-0" style="color: #F0A160;"><em>Post an Event</em></h1>
+				<form:form action="/events/new" modelAttribute="newEvent" method="POST" class="shadow row rounded bg-light g-3 mx-0 pt-2">
 					<h4>Event:</h4>
 					<p class="my-1"><span class="text-danger">*</span><em> - indicates a required field</em></p>
 					<div class="col-12">
@@ -238,14 +238,14 @@
 		  				<div><form:errors path="contactWhatsApp" /></div>
 	  				</div> --%>
 	  				<div class="mb-3 text-center">
-		  				<input type="submit" value="Post Event" class="col-2 btn btn-sm btn-primary" />  				
+		  				<input type="submit" value="Post Event" class="col-2 btn btn-sm btn-moss" />  				
 	  				</div>
 	  			</form:form>
 	  		</div>
+	  		<br />
+	  		<br />
+	  		<br />
   		</div>
-  		<br />
-  		<br />
-  		<br />
 	</main>
 
 </body>

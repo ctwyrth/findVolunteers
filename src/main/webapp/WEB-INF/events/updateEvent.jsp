@@ -60,10 +60,10 @@
    				</c:otherwise>
    			</c:choose>
   		</div>
-		<div class="container-fluid" style="overflow-y: hidden;">
-			<div class="row mx-auto mt-4" style="width: 90%;">
-				<h1 class="display-4"> Post an Event:</h1>
-				<form:form action="/events/new" modelAttribute="event" method="post" class="row border border-1 rounded bg-light g-3">
+		<div class="container-fluid" style="overflow-x: hidden;">
+			<div class="row mx-auto mt-4" style="width: 80%;">
+				<h1 class="display-4 p-0" style="color: #9FC088"><em>Update the Event</em></h1>
+				<form:form action="/events/new" modelAttribute="event" method="post" class="shadow row rounded bg-light g-3 mt-0">
 					<p class="my-1"><span class="text-danger">*</span><em> - indicates a required field</em></p>
 					<h4>Event:</h4>
 					<div class="col-12">
@@ -156,10 +156,13 @@
 		  				<div><form:errors path="contactWhatsApp" /></div>
 	  				</div> --%>
 	  				<div class="mb-3 text-center">
-		  				<input type="submit" value="Post Event" class="col-2 btn btn-sm btn-primary" />  				
+		  				<input type="submit" value="Post Event" class="col-2 btn btn-sm btn-moss" />  				
 	  				</div>
 	  			</form:form>
 	  		</div>
+	  		<br />
+	  		<br />
+	  		<br />
   		</div>
 	</main>
 </body>
